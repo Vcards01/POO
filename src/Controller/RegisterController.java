@@ -17,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.net.URL;
@@ -38,17 +39,37 @@ public class RegisterController implements Initializable {
     @FXML
     public PasswordField txt_senha;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fill_comboBox();
         check_type();
         txt_email.setVisible(false);
     }
-
+    @FXML
     public void Close(MouseEvent Event) {
         Platform.exit();
         System.exit(0);
     }
+    @FXML
+    public void back(MouseEvent event)
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/login.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+            Stage register = (Stage) close.getScene().getWindow();
+            register.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
     public void Register(ActionEvent actionEvent) {
         if(txt_id.getText().equals("")||txt_nome.getText().equals("")||txt_senha.getText().equals("")||txt_user.getText().equals("")||txt_email.getText().equals(""))
         {

@@ -1,6 +1,7 @@
 package Controller;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +25,27 @@ public class LoginController implements Initializable {
 
     }
 
+    public void Login(ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/UI_candidato.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setFullScreen(true);
+            stage.show();
+            Stage login = (Stage)close.getScene().getWindow();
+            login.close();
+        }catch (Exception e)
+        {
+
+        }
+
+    }
     public void Close(MouseEvent Event)
     {
         Platform.exit();

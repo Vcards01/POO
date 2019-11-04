@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UI_candidatoController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="211.0" style="-fx-background-color: #2B2729;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="btn_home" layoutY="138.0" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label layoutX="100.0" layoutY="9.0" text="Home" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/house.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane fx:id="barra_1" layoutX="7.0" layoutY="1.0" prefHeight="34.0" prefWidth="12.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+            <AnchorPane fx:id="btn_vagas" layoutY="204.0" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label layoutX="100.0" layoutY="9.0" text="Vagas" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/magnifying-glass.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane fx:id="barra_2" layoutX="7.0" layoutY="1.0" prefHeight="34.0" prefWidth="12.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+            <AnchorPane fx:id="btn_curriculo" layoutY="277.0" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label layoutX="100.0" layoutY="9.0" text="Curriculo" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/contract.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane fx:id="barra_3" layoutX="7.0" layoutY="1.0" prefHeight="34.0" prefWidth="12.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+            <AnchorPane fx:id="btn_perfil" layoutY="343.0" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label layoutX="100.0" layoutY="9.0" text="Perfil" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/avatar.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane fx:id="barra_4" layoutX="7.0" layoutY="1.0" prefHeight="34.0" prefWidth="12.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+            <AnchorPane fx:id="btn_sair" layoutY="351.0" onMouseClicked="#Close" prefHeight="34.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label layoutX="100.0" layoutY="9.0" text="Sair" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/power-button.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane fx:id="barra_5" layoutX="7.0" layoutY="1.0" prefHeight="34.0" prefWidth="12.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+            <ImageView fitHeight="52.0" fitWidth="53.0" layoutX="27.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="31.0">
+               <image>
+                  <Image url="@../Resources/male-job-search-symbol.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="90.0" layoutY="31.0" text="Workind" textFill="WHITE" AnchorPane.topAnchor="31.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panel_principal" layoutX="211.0" layoutY="10.0" prefHeight="720.0" prefWidth="609.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0">
+         <children>
+            <TableView maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="520.0">
+              <columns>
+                <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Vaga" />
+                <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Empresa" />
+                <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Salario" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TableView maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="80.0">
+              <columns>
+                <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Vaga" />
+                <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Empresa" />
+                <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Salario" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TableView maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="300.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Vaga" />
+                  <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Empresa" />
+                  <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Salario" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <AnchorPane prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas sem resposta" textFill="#2b2729">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="270.0">
+               <children>
+                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas com resposta positiva" textFill="#2b2729">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="490.0">
+               <children>
+                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas com resposta positiva" textFill="#2b2729">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="266.0" prefHeight="10.0" prefWidth="200.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

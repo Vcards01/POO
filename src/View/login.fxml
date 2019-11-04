@@ -10,58 +10,55 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="670.0" minHeight="400.0" minWidth="670.0" prefHeight="400.0" prefWidth="670.0" style="-fx-background-color: #7B2233;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<AnchorPane maxHeight="400.0" maxWidth="300.0" minHeight="400.0" minWidth="300.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #2B2729;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
-      <AnchorPane layoutX="391.0" layoutY="29.0" prefHeight="342.0" prefWidth="234.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <Label layoutX="52.0" layoutY="23.0" text="Login to" />
-            <Label layoutX="111.0" layoutY="22.0" text="Workind">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <TextField layoutX="49.0" layoutY="93.0" promptText="Usuario" />
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Resources/user.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Resources/lock.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="22.0" layoutY="232.0" text="Não possui conta?" />
-            <Label layoutX="147.0" layoutY="232.0" onMouseClicked="#Register" text="Cadastre-se" underline="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Label>
-            <Button layoutX="86.0" layoutY="269.0" mnemonicParsing="false" style="-fx-background-color: #7B2233;" text="Entrar" textFill="WHITE" />
-            <PasswordField layoutX="49.0" layoutY="158.0" promptText="Senha" />
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="134.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="52.0" fitWidth="53.0" layoutX="83.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Resources/male-job-search-symbol.png" />
          </image>
       </ImageView>
-      <Label layoutX="151.0" layoutY="46.0" text="Workind" textFill="WHITE">
+      <Label layoutX="146.0" layoutY="39.0" text="Workind" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="27.0" layoutY="241.0" text="Fácil de buscar e buscando sempre o melhor." textFill="WHITE">
+      <Label layoutX="13.0" layoutY="91.0" prefHeight="19.0" prefWidth="343.0" text="Fácil de buscar e buscando sempre o melhor." textFill="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font size="12.0" />
          </font>
       </Label>
-      <ImageView fx:id="close" fitHeight="24.0" fitWidth="24.0" layoutX="632.0" layoutY="2.0" onMouseClicked="#Close" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="close" fitHeight="24.0" fitWidth="24.0" layoutX="265.0" layoutY="2.0" onMouseClicked="#Close" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Resources/close-arrow-shape-button-interface-symbol.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </ImageView>
+      <Label layoutX="86.0" layoutY="126.0" text="Login to" textFill="WHITE" />
+      <Label layoutX="144.0" layoutY="125.0" text="Workind" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="71.0" layoutY="160.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" promptText="Usuario" />
+      <PasswordField layoutX="71.0" layoutY="214.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" promptText="Senha" />
+      <Button layoutX="121.0" layoutY="328.0" mnemonicParsing="false" onAction="#Login" style="-fx-background-color: #B33037;" text="Entrar" textFill="WHITE" />
+      <Label layoutX="45.0" layoutY="272.0" text="Não possui conta?" textFill="WHITE" />
+      <Label layoutX="170.0" layoutY="272.0" onMouseClicked="#Register" text="Cadastre-se" textFill="WHITE" underline="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="46.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/contact%20.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="46.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/square-rounded-32.png" />
+         </image>
       </ImageView>
    </children>
 </AnchorPane>

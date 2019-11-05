@@ -1,11 +1,18 @@
 package Controller;
 
+import DataBase.vagasDAO;
+import Model.Vaga;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -36,15 +43,29 @@ public class UI_candidatoController implements Initializable {
     public AnchorPane btn_sair;
     @FXML
     public AnchorPane btn_home;
-
+    public TableView table_semResposta;
+    public TableColumn collum_vagas_semResposta;
+    public TableColumn collum_empresa_semResposta;
+    public TableColumn collum_salario_semResposta;
+    private vagasDAO vagasDAO = new vagasDAO();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        collum_vagas_semResposta.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        collum_empresa_semResposta.setCellValueFactory(new PropertyValueFactory<>("empresa"));
+        collum_salario_semResposta.setCellValueFactory(new PropertyValueFactory<>("salario"));
+        table_semResposta.setItems(getVagas());
         barra_1.setVisible(false);
         barra_2.setVisible(false);
         barra_3.setVisible(false);
         barra_4.setVisible(false);
         barra_5.setVisible(false);
         details();
+    }
+    public ObservableList<Vaga> getVagas()
+    {
+        ObservableList<Vaga> vagas =FXCollections.observableArrayList(vagasDAO.getVagas());
+        System.out.println(vagas.get(0).getEmpresa());
+        return vagas;
     }
     @FXML
     public void Close(MouseEvent Event) {

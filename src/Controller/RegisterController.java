@@ -1,5 +1,8 @@
 package Controller;
 
+import DataBase.usuarioDAO;
+import Model.Candidato;
+import Model.Usuario;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
@@ -38,13 +42,15 @@ public class RegisterController implements Initializable {
     public TextField txt_email;
     @FXML
     public PasswordField txt_senha;
-
+    private usuarioDAO dao = new usuarioDAO();
+    private ArrayList<Usuario> usuarios;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fill_comboBox();
         check_type();
         txt_email.setVisible(false);
+        usuarios=dao.getUsuarios();
     }
     @FXML
     public void Close(MouseEvent Event) {
@@ -71,6 +77,7 @@ public class RegisterController implements Initializable {
     }
     @FXML
     public void Register(ActionEvent actionEvent) {
+        Boolean existes=false;
         if(txt_id.getText().equals("")||txt_nome.getText().equals("")||txt_senha.getText().equals("")||txt_user.getText().equals("")||txt_email.getText().equals(""))
         {
             Alert aviso = new Alert(Alert.AlertType.INFORMATION);
@@ -81,20 +88,46 @@ public class RegisterController implements Initializable {
         }
         else
         {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/login.fxml"));
-                Parent root = loader.load();
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.centerOnScreen();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.show();
-                Stage register = (Stage) close.getScene().getWindow();
-                register.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+            for (Usuario u:usuarios)
+            {
+                if(txt_id.getText().equals(u.getIdentificador()))
+                {
+                    Alert aviso = new Alert(Alert.AlertType.INFORMATION);
+                    aviso.setTitle("Usuario já existe");
+                    aviso.setHeaderText(null);
+                    aviso.setContentText("Já existe um usuario com esse CPF/CNPJ");
+                    aviso.show();
+                    existes=true;
+                    break;
+                }
+                else
+                {
+                    existes=false;
+                }
             }
+            if (existes==false)
+            {
+                if(cb_tipo.getValue().equals("Candidato"))
+                {
+                    Usuario u= new Candidato(txt_user.getText(),txt_senha.getText(),txt_nome.getText(),txt_id.getText(),txt_email.getText());
+                    dao.create(u);
+                }
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/login.fxml"));
+                    Parent root = loader.load();
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.centerOnScreen();
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.show();
+                    Stage register = (Stage) close.getScene().getWindow();
+                    register.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
     }
     public void fill_comboBox()

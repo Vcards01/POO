@@ -41,8 +41,8 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="71.0" layoutY="160.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" promptText="Usuario" />
-      <PasswordField layoutX="71.0" layoutY="214.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" promptText="Senha" />
+      <TextField fx:id="txt_user" layoutX="71.0" layoutY="160.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" promptText="Usuario" />
+      <PasswordField fx:id="txt_senha" layoutX="71.0" layoutY="214.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" promptText="Senha" />
       <Button layoutX="121.0" layoutY="328.0" mnemonicParsing="false" onAction="#Login" style="-fx-background-color: #B33037;" text="Entrar" textFill="WHITE" />
       <Label layoutX="45.0" layoutY="272.0" text="Não possui conta?" textFill="WHITE" />
       <Label layoutX="170.0" layoutY="272.0" onMouseClicked="#Register" text="Cadastre-se" textFill="WHITE" underline="true">

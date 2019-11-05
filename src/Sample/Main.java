@@ -1,5 +1,6 @@
 package Sample;
 
+import DataBase.Tables;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        Tables.CreateTables();
         Parent root = FXMLLoader.load(getClass().getResource("../View/login.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);

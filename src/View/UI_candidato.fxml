@@ -13,7 +13,7 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="211.0" style="-fx-background-color: #2B2729;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="btn_home" layoutY="138.0" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane fx:id="btn_home" layoutY="138.0" onMouseClicked="#OpenHome" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Label layoutX="100.0" layoutY="9.0" text="Home" textFill="WHITE">
                      <font>
@@ -31,7 +31,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
-            <AnchorPane fx:id="btn_vagas" layoutY="204.0" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane fx:id="btn_vagas" layoutY="204.0" onMouseClicked="#OpenVagas" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Label layoutX="100.0" layoutY="9.0" text="Vagas" textFill="WHITE">
                      <font>
@@ -117,7 +117,7 @@
       </AnchorPane>
       <AnchorPane fx:id="panel_principal" layoutX="211.0" layoutY="10.0" prefHeight="720.0" prefWidth="609.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0">
          <children>
-            <TableView maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="520.0">
+            <TableView fx:id="table_negativa" maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="520.0">
               <columns>
                 <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Vaga" />
                 <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Empresa" />
@@ -137,7 +137,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="300.0">
+            <TableView fx:id="table_positiva" maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="300.0">
                <columns>
                   <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Vaga" />
                   <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Empresa" />
@@ -147,7 +147,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <AnchorPane prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
+            <AnchorPane fx:id="header_sem_resposta" prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
                <children>
                   <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas sem resposta" textFill="#2b2729">
                      <font>
@@ -156,7 +156,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="270.0">
+            <AnchorPane fx:id="header_positiva" prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="270.0">
                <children>
                   <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas com resposta positiva" textFill="#2b2729">
                      <font>
@@ -165,9 +165,9 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="490.0">
+            <AnchorPane fx:id="header_negativa" prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="490.0">
                <children>
-                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas com resposta positiva" textFill="#2b2729">
+                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas com resposta negativa" textFill="#2b2729">
                      <font>
                         <Font size="15.0" />
                      </font>

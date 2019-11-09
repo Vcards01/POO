@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,6 +21,8 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class UI_candidatoController implements Initializable {
@@ -47,13 +50,15 @@ public class UI_candidatoController implements Initializable {
     public TableColumn collum_vagas_semResposta;
     public TableColumn collum_empresa_semResposta;
     public TableColumn collum_salario_semResposta;
+    public AnchorPane header_sem_resposta;
+    public AnchorPane header_positiva;
+    public AnchorPane header_negativa;
+    public AnchorPane panel_principal;
+    public TableView table_positiva;
+    public TableView table_negativa;
     private vagasDAO vagasDAO = new vagasDAO();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        collum_vagas_semResposta.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        collum_empresa_semResposta.setCellValueFactory(new PropertyValueFactory<>("empresa"));
-        collum_salario_semResposta.setCellValueFactory(new PropertyValueFactory<>("salario"));
-        table_semResposta.setItems(getVagas());
         barra_1.setVisible(false);
         barra_2.setVisible(false);
         barra_3.setVisible(false);
@@ -81,6 +86,19 @@ public class UI_candidatoController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void OpenHome(MouseEvent event) throws IOException{
+        panel_principal.getChildren().clear();
+        panel_principal.getChildren().setAll(header_sem_resposta,table_semResposta,header_negativa,table_negativa,header_positiva,table_positiva);
+    }
+    @FXML
+    public void OpenVagas(MouseEvent Event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/UI_candidato_vagas.fxml"));
+            AnchorPane pane = loader.load();
+            UI_candidadoVagasController controller = loader.getController();
+            controller.set_medidas(panel_principal.getHeight(),panel_principal.getWidth());
+            panel_principal.getChildren().clear();
+            panel_principal.getChildren().setAll(pane);
     }
     private void details()
     {

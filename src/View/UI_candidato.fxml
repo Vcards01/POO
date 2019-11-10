@@ -117,31 +117,34 @@
       </AnchorPane>
       <AnchorPane fx:id="panel_principal" layoutX="211.0" layoutY="10.0" prefHeight="720.0" prefWidth="609.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0">
          <children>
-            <TableView fx:id="table_negativa" maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="520.0">
+            <TableView fx:id="table_negativa" maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" style="-fx-selection-bar: #B33037;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="520.0">
               <columns>
-                <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Vaga" />
-                <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Empresa" />
-                <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Salario" />
+                <TableColumn fx:id="column_area_negativa" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Area" />
+                 <TableColumn fx:id="column_subarea_negativa" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Subarea" />
+                <TableColumn fx:id="column_empresa_negativa" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Empresa" />
+                <TableColumn fx:id="column_salario_negativa" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Salario" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="table_semResposta" maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="80.0">
+            <TableView fx:id="table_semResposta" maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" style="-fx-selection-bar: #B33037;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="80.0">
               <columns>
-                <TableColumn fx:id="collum_vagas_semResposta" prefWidth="75.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2B2729;" text="Vaga" />
-                <TableColumn fx:id="collum_empresa_semResposta" prefWidth="75.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2B2729;" text="Empresa" />
-                <TableColumn fx:id="collum_salario_semResposta" prefWidth="75.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2B2729;" text="Salario" />
+                 <TableColumn fx:id="column_area_semresposta" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Area" />
+                 <TableColumn fx:id="column_subarea_semresposta" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Subarea" />
+                 <TableColumn fx:id="column_empresa_semresposta" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Empresa" />
+                 <TableColumn fx:id="column_salario_semresposta" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Salario" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="table_positiva" maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="300.0">
+            <TableView fx:id="table_positiva" maxHeight="170.0" minHeight="170.0" prefHeight="170.0" prefWidth="562.0" style="-fx-selection-bar: #B33037;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="300.0">
                <columns>
-                  <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Vaga" />
-                  <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Empresa" />
-                  <TableColumn prefWidth="75.0" style="-fx-background-color: #FFFFFF;" text="Salario" />
+                  <TableColumn fx:id="column_area_positivo" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Area" />
+                  <TableColumn fx:id="column_subarea_positivo" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Subarea" />
+                  <TableColumn fx:id="column_empresa_positivo" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Empresa" />
+                  <TableColumn fx:id="column_salario_positivo" prefWidth="75.0" style="-fx-border-color: #2B2729;" text="Salario" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

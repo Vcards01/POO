@@ -15,6 +15,7 @@ public class Tables {
         table_candidato();
         table_empresa();
         table_vaga();
+        table_proposta();
     }
     private static void table_candidato()
     {
@@ -97,6 +98,22 @@ public class Tables {
             stmt.addBatch(data_9);
             stmt.addBatch(data_10);
             stmt.addBatch(data_11);
+            stmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    private static void table_proposta() {
+        String table = "CREATE TABLE IF NOT EXISTS proposta(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                "candidato VARCHAR(40)," +
+                "vaga INTEGER," +
+                "status VARCHAR(20)," +
+                "FOREIGN KEY(vaga) REFERENCES vaga(id)," +
+                "FOREIGN KEY(candidato) REFERENCES candidato(cpf));";
+        Statement stmt = null;
+        try {
+            stmt = connection.createStatement();
+            stmt.addBatch(table);
             stmt.executeBatch();
         } catch (SQLException e) {
             e.printStackTrace();

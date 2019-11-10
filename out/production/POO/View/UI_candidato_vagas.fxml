@@ -40,6 +40,6 @@
       <Label layoutX="205.0" layoutY="77.0" text="Área" textFill="#2b2729" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="77.0" />
       <Label layoutX="377.0" layoutY="77.0" text="Subárea" textFill="#2b2729" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="77.0" />
       <Button fx:id="btn_descricao" layoutX="97.0" layoutY="400.0" mnemonicParsing="false" onAction="#show_descricao" style="-fx-background-color: #B33037;" text="Ver descrição" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="150.0" />
-      <Button fx:id="btn_candidatar" layoutX="395.0" layoutY="400.0" mnemonicParsing="false" style="-fx-background-color: #B33037;" text="Candidatar-se" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="150.0" />
+      <Button fx:id="btn_candidatar" layoutX="395.0" layoutY="400.0" mnemonicParsing="false" onAction="#candidatar" style="-fx-background-color: #B33037;" text="Candidatar-se" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="150.0" />
    </children>
 </AnchorPane>

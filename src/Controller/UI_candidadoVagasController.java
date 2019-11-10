@@ -1,6 +1,10 @@
 package Controller;
 
+import DataBase.propostaDAO;
+import DataBase.usuarioDAO;
 import DataBase.vagasDAO;
+import Model.Candidato;
+import Model.Proposta;
 import Model.Vaga;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -34,7 +38,8 @@ public class UI_candidadoVagasController implements Initializable {
     public TableColumn column_empresa;
     public TableView table_vagas;
     private vagasDAO DAO = new vagasDAO();
-
+    private Candidato c;
+    private propostaDAO propDAO = new propostaDAO();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fill_comboBox();
@@ -42,8 +47,12 @@ public class UI_candidadoVagasController implements Initializable {
         find_by_area();
         find_by_subarea();
 
-    }
 
+    }
+    public void get_user(Candidato c)
+    {
+        this.c=c;
+    }
     public void set_medidas(Double h , Double w)
     {
         panel_vagas.setPrefHeight(h);
@@ -122,6 +131,17 @@ public class UI_candidadoVagasController implements Initializable {
         aviso.setTitle("Descrição da vaga");
         aviso.setHeaderText(null);
         aviso.setContentText(v.getDescricao());
+        aviso.show();
+    }
+    public void candidatar(ActionEvent event)
+    {
+        Vaga v = (Vaga)table_vagas.getSelectionModel().getSelectedItem();
+        Proposta p = new Proposta(c,v,"Em espera");
+        propDAO.create(p);
+        Alert aviso = new Alert(Alert.AlertType.INFORMATION);
+        aviso.setTitle("Sucesso");
+        aviso.setHeaderText(null);
+        aviso.setContentText("Você se canditatou para a vaga,fique atento a resposta da empresa");
         aviso.show();
     }
 }

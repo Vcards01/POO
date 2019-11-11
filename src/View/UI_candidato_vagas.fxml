@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="panel_vagas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UI_candidadoVagasController">
+<AnchorPane fx:id="panel_vagas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UI_candidatoVagasController">
    <children>
       <TableView fx:id="table_vagas" layoutX="47.0" layoutY="170.0" maxHeight="1.7976931348623157E308" prefHeight="226.0" prefWidth="506.0" style="-fx-selection-bar: #B33037;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="150.0">
         <columns>

@@ -25,14 +25,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class UI_candidadoVagasController implements Initializable {
+public class UI_candidatoVagasController implements Initializable {
     public AnchorPane panel_vagas;
     public Label txt_disponiveis;
     public ComboBox cb_area;
     public ComboBox cb_subarea;
     public TableColumn column_area;
     public TableColumn column_subarea;
-    public TableColumn column_descri;
     public TableColumn column_nvagas;
     public TableColumn column_salario;
     public TableColumn column_empresa;
@@ -46,12 +45,11 @@ public class UI_candidadoVagasController implements Initializable {
         set_table();
         find_by_area();
         find_by_subarea();
-
-
     }
     public void get_user(Candidato c)
     {
         this.c=c;
+
     }
     public void set_medidas(Double h , Double w)
     {

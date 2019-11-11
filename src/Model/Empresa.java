@@ -6,8 +6,5 @@ public class Empresa extends Usuario {
         super(user, senha, nome, identificador);
     }
 
-    @Override
-    public String toString() {
-        return getNome();
-    }
+
 }

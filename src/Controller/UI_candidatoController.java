@@ -5,7 +5,6 @@ import DataBase.vagasDAO;
 import Model.Candidato;
 import Model.Proposta;
 import Model.Vaga;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,9 +22,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class UI_candidatoController implements Initializable {
@@ -82,44 +78,39 @@ public class UI_candidatoController implements Initializable {
         barra_3.setVisible(false);
         barra_4.setVisible(false);
         barra_5.setVisible(false);
-        fill_table();
         details();
     }
-    public ObservableList<Vaga> getPropostas(String status)
+    public ObservableList<Vaga> getPropostas(String status,Candidato c)
     {
-        ArrayList<Proposta> list= PropDAO.getPropostas();
+        ArrayList<Proposta> list= PropDAO.getPropostas(c,status);
         ObservableList<Vaga>propostas=FXCollections.observableArrayList();
         for (Proposta p:list) {
-            if (status.equals(p.getStatus()))
-            {
                 propostas.add(p.getVaga());
-            }
-
         }
         return propostas;
     }
-    public void fill_table()
+    public void fill_table(Candidato c)
     {
         column_area_semresposta.setCellValueFactory(new PropertyValueFactory<>("area"));
-        column_area_positivo.setCellValueFactory(new PropertyValueFactory<>("area"));
-        column_area_negativa.setCellValueFactory(new PropertyValueFactory<>("area"));
         column_subarea_semresposta.setCellValueFactory(new PropertyValueFactory<>("subArea"));
-        column_subarea_positivo.setCellValueFactory(new PropertyValueFactory<>("subArea"));
-        column_subarea_negativa.setCellValueFactory(new PropertyValueFactory<>("subArea"));
         column_empresa_semresposta.setCellValueFactory(new PropertyValueFactory<>("empresa"));
-        column_empresa_positivo.setCellValueFactory(new PropertyValueFactory<>("empresa"));
-        column_empresa_negativa.setCellValueFactory(new PropertyValueFactory<>("empresa"));
         column_salario_semresposta.setCellValueFactory(new PropertyValueFactory<>("salario"));
+        table_semResposta.setItems(getPropostas("Em espera",c));
+        column_area_positivo.setCellValueFactory(new PropertyValueFactory<>("area"));
+        column_subarea_positivo.setCellValueFactory(new PropertyValueFactory<>("subArea"));
+        column_empresa_positivo.setCellValueFactory(new PropertyValueFactory<>("empresa"));
         column_salario_positivo.setCellValueFactory(new PropertyValueFactory<>("salario"));
+        table_positiva.setItems(getPropostas("Positivo",c));
+        column_area_negativa.setCellValueFactory(new PropertyValueFactory<>("area"));
+        column_subarea_negativa.setCellValueFactory(new PropertyValueFactory<>("subArea"));
+        column_empresa_negativa.setCellValueFactory(new PropertyValueFactory<>("empresa"));
         column_salario_negativa.setCellValueFactory(new PropertyValueFactory<>("salario"));
-        System.out.println("dasdasd");
-        table_semResposta.setItems(getPropostas("Em espera"));
-        table_positiva.setItems(getPropostas("Positivo"));
-        table_negativa.setItems(getPropostas("Negativo"));
+        table_negativa.setItems(getPropostas("Negativo",c));
     }
     public void get_user(Candidato c)
     {
         this.c=c;
+        fill_table(c);
     }
     @FXML
     public void Close(MouseEvent Event) {
@@ -142,17 +133,27 @@ public class UI_candidatoController implements Initializable {
         table_semResposta.getItems().removeAll();
         table_positiva.getItems().removeAll();
         table_negativa.getItems().removeAll();
-        fill_table();
+        fill_table(c);
     }
     @FXML
     public void OpenVagas(MouseEvent Event) throws IOException {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/UI_candidato_vagas.fxml"));
             AnchorPane pane = loader.load();
-            UI_candidadoVagasController controller = loader.getController();
+            UI_candidatoVagasController controller = loader.getController();
             controller.set_medidas(panel_principal.getHeight(),panel_principal.getWidth());
             controller.get_user(c);
             panel_principal.getChildren().clear();
             panel_principal.getChildren().setAll(pane);
+    }
+    @FXML
+    public void OpenCurriculo(MouseEvent Event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/UI_candidato_curriculo.fxml"));
+        AnchorPane pane = loader.load();
+        UI_candidatoCurriculoController controller = loader.getController();
+        controller.get_user(c);
+        controller.set_medidas(panel_principal.getHeight(),panel_principal.getWidth());
+        panel_principal.getChildren().clear();
+        panel_principal.getChildren().setAll(pane);
     }
     private void details()
     {

@@ -95,7 +95,7 @@ public class propostaDAO {
             ResultSet rs = stmt.executeQuery();
             ArrayList<Proposta> propostas = new ArrayList<>();
             while (rs.next()) {
-                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("id")), rs.getString("status"));
+                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("vaga")), rs.getString("status"));
                 propostas.add(p);
             }
             rs.close();
@@ -112,14 +112,14 @@ public class propostaDAO {
         connection = new DataBase().getConnection();
 
         try {
-            String sql = "SELECT * FROM proposta WHERE candidato='?' AND status='?'";
+            String sql = "SELECT * FROM proposta where candidato=? AND status= ?";
             PreparedStatement stmt = this.connection.prepareStatement(sql);
-            stmt.setString(1, c.getIdentificador());
-            stmt.setString(2, status);
+            stmt.setString(1,c.getIdentificador());
+            stmt.setString(2,status);
             ResultSet rs = stmt.executeQuery();
             ArrayList<Proposta> propostas = new ArrayList<>();
             while (rs.next()) {
-                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("id")), rs.getString("status"));
+                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("vaga")), rs.getString("status"));
                 propostas.add(p);
             }
             rs.close();
@@ -132,4 +132,5 @@ public class propostaDAO {
         }
         return null;
     }
+
 }

@@ -49,7 +49,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
-            <AnchorPane fx:id="btn_curriculo" layoutY="277.0" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane fx:id="btn_curriculo" layoutY="277.0" onMouseClicked="#OpenCurriculo" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Label layoutX="100.0" layoutY="9.0" text="Curriculo" textFill="WHITE">
                      <font>
@@ -152,27 +152,27 @@
             </TableView>
             <AnchorPane fx:id="header_sem_resposta" prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas sem resposta" textFill="#2b2729">
+                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas sem resposta" textFill="WHITE">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="header_positiva" prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="270.0">
                <children>
-                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas com resposta positiva" textFill="#2b2729">
+                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas com resposta positiva" textFill="WHITE">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="header_negativa" prefHeight="25.0" prefWidth="474.0" style="-fx-background-color: #B33037;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="490.0">
                <children>
-                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas com resposta negativa" textFill="#2b2729">
+                  <Label layoutX="22.0" layoutY="3.0" text="Vagas aplicadas com resposta negativa" textFill="WHITE">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                </children>

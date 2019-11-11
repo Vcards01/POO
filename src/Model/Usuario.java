@@ -29,4 +29,8 @@ public class Usuario {
     public String getIdentificador() {
         return identificador;
     }
+    @Override
+    public String toString() {
+        return getNome();
+    }
 }

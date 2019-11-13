@@ -15,8 +15,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -68,6 +70,9 @@ public class UI_candidatoController implements Initializable {
     public TableColumn column_subarea_positivo;
     public TableColumn column_empresa_positivo;
     public TableColumn column_salario_positivo;
+    public ImageView btn_next;
+    public Pane panel_buttom_next;
+
     private propostaDAO PropDAO = new propostaDAO();
     private vagasDAO vagasDAO = new vagasDAO();
     private Candidato c;
@@ -88,6 +93,14 @@ public class UI_candidatoController implements Initializable {
                 propostas.add(p.getVaga());
         }
         return propostas;
+    }
+    public String notification(int type, String empresa, String vaga)
+    {
+            if(type == 1)return "A empresa " + empresa + "recusou seu currículo :(";
+            else if(type == 2)return "Você preencheu a vaga de " + vaga + " na " + empresa + "!";
+            else if(type == 3)return "As vaga de " + vaga + " na " + empresa + " acabaram :(";
+            else return "não há notificações no momento...";
+            
     }
     public void fill_table(Candidato c)
     {
@@ -167,6 +180,8 @@ public class UI_candidatoController implements Initializable {
        btn_perfil.setOnMouseExited(event -> { barra_4.setVisible(false);});
        btn_sair.setOnMouseEntered(event -> { barra_5.setVisible(true);});
        btn_sair.setOnMouseExited(event -> { barra_5.setVisible(false);});
+       btn_next.setOnMouseEntered(event -> { panel_buttom_next.setStyle("-fx-border-color: white;");});
+       btn_next.setOnMouseExited(event -> { panel_buttom_next.setStyle("-fx-border-color: transparent;");});
     }
 
 }

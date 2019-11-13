@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UI_candidatoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UI_candidatoController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="211.0" style="-fx-background-color: #2B2729;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -113,6 +110,16 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
+            <Pane layoutX="5.0" layoutY="545.0" prefHeight="90.0" prefWidth="202.0" style="-fx-border-color: #B33037; -fx-border-radius: 5%;">
+               <children>
+                  <Pane fx:id="panel_buttom_next" layoutX="170.0" layoutY="16.0" prefHeight="61.0" prefWidth="25.0" style="-fx-border-radius: 20%;" />
+                  <ImageView fx:id="btn_next" fitHeight="25.0" fitWidth="25.0" layoutX="170.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/rightArrow.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panel_principal" layoutX="211.0" layoutY="10.0" prefHeight="720.0" prefWidth="609.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0">

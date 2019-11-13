@@ -28,6 +28,41 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class UI_candidatoController implements Initializable {
+<<<<<<< HEAD
+    @FXML public AnchorPane barra_1;
+    @FXML public AnchorPane barra_2;
+    @FXML public AnchorPane barra_3;
+    @FXML public AnchorPane barra_4;
+    @FXML public AnchorPane barra_5;
+    @FXML public AnchorPane btn_vagas;
+    @FXML public AnchorPane btn_curriculo;
+    @FXML public AnchorPane btn_perfil;
+    @FXML public AnchorPane btn_sair;
+    @FXML public AnchorPane btn_home;
+    @FXML public TableView table_semResposta;
+    @FXML public AnchorPane header_sem_resposta;
+    @FXML public AnchorPane header_positiva;
+    @FXML public AnchorPane header_negativa;
+    @FXML public AnchorPane panel_principal;
+    @FXML public TableView table_positiva;
+    @FXML public TableView table_negativa;
+    @FXML public TableColumn column_area_negativa;
+    @FXML public TableColumn column_subarea_negativa;
+    @FXML public TableColumn column_empresa_negativa;
+    @FXML public TableColumn column_salario_negativa;
+    @FXML public TableColumn column_area_semresposta;
+    @FXML public TableColumn column_subarea_semresposta;
+    @FXML public TableColumn column_empresa_semresposta;
+    @FXML public TableColumn column_salario_semresposta;
+    @FXML public TableColumn column_area_positivo;
+    @FXML public TableColumn column_subarea_positivo;
+    @FXML public TableColumn column_empresa_positivo;
+    @FXML public TableColumn column_salario_positivo;
+          private propostaDAO PropDAO = new propostaDAO();
+          private vagasDAO vagasDAO = new vagasDAO();
+          private Candidato c;
+
+=======
     @FXML
     public AnchorPane barra_1;
     @FXML
@@ -76,6 +111,7 @@ public class UI_candidatoController implements Initializable {
     private propostaDAO PropDAO = new propostaDAO();
     private vagasDAO vagasDAO = new vagasDAO();
     private Candidato c;
+>>>>>>> 8b2f47e1fcd1c6ca408562457b1d612227668c4c
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         barra_1.setVisible(false);
@@ -85,6 +121,7 @@ public class UI_candidatoController implements Initializable {
         barra_5.setVisible(false);
         details();
     }
+
     public ObservableList<Vaga> getPropostas(String status,Candidato c)
     {
         ArrayList<Proposta> list= PropDAO.getPropostas(c,status);
@@ -94,6 +131,9 @@ public class UI_candidatoController implements Initializable {
         }
         return propostas;
     }
+<<<<<<< HEAD
+    @FXML
+=======
     public String notification(int type, String empresa, String vaga)
     {
             if(type == 1)return "A empresa " + empresa + "recusou seu currículo :(";
@@ -102,6 +142,7 @@ public class UI_candidatoController implements Initializable {
             else return "não há notificações no momento...";
             
     }
+>>>>>>> 8b2f47e1fcd1c6ca408562457b1d612227668c4c
     public void fill_table(Candidato c)
     {
         column_area_semresposta.setCellValueFactory(new PropertyValueFactory<>("area"));
@@ -120,11 +161,13 @@ public class UI_candidatoController implements Initializable {
         column_salario_negativa.setCellValueFactory(new PropertyValueFactory<>("salario"));
         table_negativa.setItems(getPropostas("Negativo",c));
     }
+
     public void get_user(Candidato c)
     {
         this.c=c;
         fill_table(c);
     }
+
     @FXML
     public void Close(MouseEvent Event) {
         Stage stage = (Stage) btn_sair.getScene().getWindow();
@@ -140,6 +183,7 @@ public class UI_candidatoController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
     public void OpenHome(MouseEvent event) throws IOException{
         panel_principal.getChildren().clear();
         panel_principal.getChildren().setAll(header_sem_resposta,header_negativa,header_positiva,table_semResposta,table_positiva,table_negativa);
@@ -168,6 +212,18 @@ public class UI_candidatoController implements Initializable {
         panel_principal.getChildren().clear();
         panel_principal.getChildren().setAll(pane);
     }
+    @FXML
+    public void OpenDados(MouseEvent Event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/UI_candidato_dados.fxml"));
+        AnchorPane pane = loader.load();
+        UI_candidatoDadosController controller = loader.getController();
+        System.out.println(c.getNome());
+        controller.get_user(c);
+        controller.set_medidas(panel_principal.getHeight(),panel_principal.getWidth());
+        panel_principal.getChildren().clear();
+        panel_principal.getChildren().setAll(pane);
+    }
+    @FXML
     private void details()
     {
        btn_home.setOnMouseEntered(event -> { barra_1.setVisible(true);});

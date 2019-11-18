@@ -34,8 +34,6 @@ public class propostaDAO {
             e.printStackTrace();
         }
     }
-
-
     public Proposta read(int id) {
         try {
             connection = new DataBase().getConnection();
@@ -72,7 +70,6 @@ public class propostaDAO {
             e.printStackTrace();
         }
     }
-
     public void delete(Proposta p) {
         connection = new DataBase().getConnection();
         try {

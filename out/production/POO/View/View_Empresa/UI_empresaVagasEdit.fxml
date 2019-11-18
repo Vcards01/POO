@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="600.0" maxWidth="303.0" minHeight="600.0" minWidth="300.0" prefHeight="600.0" prefWidth="303.0" style="-fx-background-color: #2B2729;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controllers_Empresa.UI_empresaVagasEditController">
+   <children>
+      <ImageView fitHeight="52.0" fitWidth="53.0" layoutX="83.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Resources/male-job-search-symbol.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="146.0" layoutY="39.0" text="Workind" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="91.0" prefHeight="19.0" prefWidth="343.0" text="Fácil de buscar e buscando sempre o melhor." textFill="WHITE">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_nome" layoutX="60.0" layoutY="119.0" promptText="Nome" />
+      <TextField fx:id="txt_subarea" layoutX="60.0" layoutY="182.0" promptText="Subárea" />
+      <TextField fx:id="txt_horario" layoutX="60.0" layoutY="214.0" promptText="Horario" />
+      <Button layoutX="107.0" layoutY="551.0" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #B33037;" text="Salvar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="13.0" layoutY="2.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Resources/left-arrow.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txt_area" layoutX="60.0" layoutY="151.0" promptText="Área" />
+      <TextArea fx:id="txt_descricao" layoutX="60.0" layoutY="251.0" prefHeight="140.0" prefWidth="171.0" promptText="Descrição" />
+      <TextField fx:id="txt_salario" layoutX="61.0" layoutY="400.0" promptText="Salario" />
+      <Spinner fx:id="spn_n_vagas" layoutX="61.0" layoutY="455.0" />
+      <Label layoutX="65.0" layoutY="433.0" text="Numero de vagas:" textFill="WHITE" />
+   </children>
+</AnchorPane>

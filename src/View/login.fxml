@@ -42,7 +42,7 @@
          </font>
       </Label>
       <TextField fx:id="txt_user" layoutX="71.0" layoutY="160.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" promptText="Usuario" />
-      <PasswordField fx:id="txt_senha" layoutX="71.0" layoutY="214.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" promptText="Senha" />
+      <PasswordField fx:id="txt_senha" layoutX="71.0" layoutY="217.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" promptText="Senha" />
       <Button layoutX="121.0" layoutY="328.0" mnemonicParsing="false" onAction="#Login" style="-fx-background-color: #B33037;" text="Entrar" textFill="WHITE" />
       <Label layoutX="45.0" layoutY="272.0" text="Não possui conta?" textFill="WHITE" />
       <Label layoutX="170.0" layoutY="272.0" onMouseClicked="#Register" text="Cadastre-se" textFill="WHITE" underline="true">
@@ -55,10 +55,11 @@
             <Image url="@../Resources/contact%20.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="46.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="46.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Resources/square-rounded-32.png" />
          </image>
       </ImageView>
+      <Label fx:id="txt_incorreto" layoutX="47.0" layoutY="195.0" text="Senha ou Usuario incorretos" textFill="WHITE" />
    </children>
 </AnchorPane>

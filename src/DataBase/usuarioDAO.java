@@ -19,10 +19,10 @@ public class usuarioDAO {
     }
 
     public void create(Usuario u) {
-
+        connection = new DataBase().getConnection();
         if( u instanceof Candidato)
         {
-            connection = new DataBase().getConnection();
+
             String sql = "INSERT INTO candidato(cpf,nome,email,usuario,senha) " + "VALUES (?, ?, ?, ?, ?);";
 
             try {
@@ -232,8 +232,6 @@ public class usuarioDAO {
         return null;
     }
     public ArrayList<Usuario> getUsuarios() {
-        connection = new DataBase().getConnection();
-
         try {
             ArrayList<Usuario> usuarios= new ArrayList<>();
             usuarios.addAll(getCandidatos());
@@ -242,12 +240,7 @@ public class usuarioDAO {
             return usuarios;
         }
         catch (Exception e) {
-            try {
-                connection.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            e.printStackTrace();
+
         }
         return null;
     }

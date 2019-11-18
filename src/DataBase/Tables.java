@@ -66,6 +66,7 @@ public class Tables {
     private static void table_vaga()
     {
         String table = "CREATE TABLE IF NOT EXISTS vaga(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                "nome VARCHAR(30),"+
                 "salario FLOAT," +
                 "horario DATE," +
                 "nVagas INTEGER," +
@@ -74,16 +75,16 @@ public class Tables {
                 "subarea VARCHAR(30)," +
                 "empresa VARCHAR(30)," +
                 "FOREIGN KEY(empresa) REFERENCES empresa(cnpj));";
-        String data_1="INSERT OR IGNORE INTO vaga(id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES(1,1200,'08:00',5,'Tabalahar no desenvolvimento de sites','TI','Desenvolvimento Web','00000000000');";
-        String data_2="INSERT OR IGNORE INTO vaga(id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES(2,1250,'06:00',4,'Tabalahar no desenvolvimento de aplicações','TI','Desenvolvimento Mobile','00000000000');";
-        String data_3="INSERT OR IGNORE INTO vaga(id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES(3,3200,'08:00',3,'Tabalahar no desenvolvimento de sites','TI','Desenvolvimento Web','00000000000');";
-        String data_4="INSERT OR IGNORE INTO vaga(id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES(4,1400,'05:00',2,'Tabalahar no desenvolvimento de Programas','TI','Desenvolvimento Desktop','00000000000');";
-        String data_6="INSERT OR IGNORE INTO vaga(id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES(5,12000,'09:00',1,'Tabalahar na Analise de software','TI','Engenharia de software','00000000000');";
-        String data_7="INSERT OR IGNORE INTO vaga(id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES(6,1000,'09:00',1,'Gerenciar funcionarios da empresa','Administração','RH','11111111111');";
-        String data_8="INSERT OR IGNORE INTO vaga(id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES(7,3000,'09:00',1,'Gerenciar projetos na empresa','Administração','Gerenciamento de projetos','11111111111');";
-        String data_9="INSERT OR IGNORE INTO vaga(id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES(8,1500,'09:00',1,'Desenvolver e lidar com componentes eletricos','Engenharia Eletrica','Eletronica','22222222222');";
-        String data_10="INSERT OR IGNORE INTO vaga(id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES(9,1200,'09:00',1,'Tabalahar na Analise de software','TI','Engenharia de software','22222222222');";
-        String data_11="INSERT OR IGNORE INTO vaga(id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES(10,17000,'09:00',1,'Tabalahar na Analise de software','TI','Engenharia de software','33333333333');";
+        String data_1="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar no desenvolvimento de sites',1,1200,'08:00',5,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Web','00000000000');";
+        String data_2="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar no desenvolvimento de aplicações',2,1250,'06:00',4,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Mobile','00000000000');";
+        String data_3="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar no desenvolvimento de sites',3,3200,'08:00',3,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Web','00000000000');";
+        String data_4="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar no desenvolvimento de Programas',4,1400,'05:00',2,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Desktop','00000000000');";
+        String data_6="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar na Analise de software',5,12000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Engenharia de software','00000000000');";
+        String data_7="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Gerenciar funcionarios da empresa',6,1000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','Administração','RH','11111111111');";
+        String data_8="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Gerenciar projetos na empresa',7,3000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','Administração','Gerenciamento de projetos','11111111111');";
+        String data_9="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Desenvolver e lidar com componentes eletricos',8,1500,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','Engenharia Eletrica','Eletronica','22222222222');";
+        String data_10="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar na Analise de software',9,1200,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Engenharia de software','22222222222');";
+        String data_11="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar na Analise de software',10,17000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Engenharia de software','33333333333');";
 
         Statement stmt = null;
         try {

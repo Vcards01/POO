@@ -2,6 +2,7 @@ package Controller;
 
 import DataBase.usuarioDAO;
 import Model.Candidato;
+import Model.Empresa;
 import Model.Usuario;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -28,20 +29,13 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
-    @FXML
-    public ImageView close;
-    @FXML
-    public ComboBox cb_tipo;
-    @FXML
-    public TextField txt_user;
-    @FXML
-    public TextField txt_id;
-    @FXML
-    public TextField txt_nome;
-    @FXML
-    public TextField txt_email;
-    @FXML
-    public PasswordField txt_senha;
+    @FXML public ImageView close;
+    @FXML public ComboBox cb_tipo;
+    @FXML public TextField txt_user;
+    @FXML public TextField txt_id;
+    @FXML public TextField txt_nome;
+    @FXML public TextField txt_email;
+    @FXML public PasswordField txt_senha;
     private usuarioDAO dao = new usuarioDAO();
     private ArrayList<Usuario> usuarios;
 
@@ -52,31 +46,35 @@ public class RegisterController implements Initializable {
         txt_email.setVisible(false);
         usuarios=dao.getUsuarios();
     }
-    @FXML
-    public void Close(MouseEvent Event) {
-        Platform.exit();
-        System.exit(0);
-    }
-    @FXML
-    public void back(MouseEvent event)
+    public void fill_comboBox()
     {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/login.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
-            Stage register = (Stage) close.getScene().getWindow();
-            register.close();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        ObservableList<String> tipos = FXCollections.observableArrayList();
+        tipos.add("Candidato");
+        tipos.add("Empresa");
+        cb_tipo.setItems(tipos);
+    }
+    public void check_type()
+    {
+        cb_tipo.valueProperty().addListener(new ChangeListener<String>()
+        {
+
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String s1) {
+                if (s1.equals("Candidato"))
+                {
+                    txt_email.setText("");
+                    txt_email.setVisible(true);
+                }
+                if (s1.equals("Empresa"))
+                {
+                    txt_email.setText("None");
+                    txt_email.setVisible(false);
+                }
+            }
+        });
     }
     @FXML
-    public void Register(ActionEvent actionEvent) {
+    public void register(ActionEvent actionEvent) {
         Boolean existes=false;
         if(txt_id.getText().equals("")||txt_nome.getText().equals("")||txt_senha.getText().equals("")||txt_user.getText().equals("")||txt_email.getText().equals(""))
         {
@@ -112,6 +110,11 @@ public class RegisterController implements Initializable {
                     Usuario u= new Candidato(txt_user.getText(),txt_senha.getText(),txt_nome.getText(),txt_id.getText(),txt_email.getText());
                     dao.create(u);
                 }
+                else if(cb_tipo.getValue().equals("Empresa"))
+                {
+                    Usuario u = new Empresa(txt_user.getText(),txt_senha.getText(),txt_nome.getText(),txt_id.getText());
+                    dao.create(u);
+                }
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/login.fxml"));
                     Parent root = loader.load();
@@ -130,31 +133,27 @@ public class RegisterController implements Initializable {
 
         }
     }
-    public void fill_comboBox()
+    @FXML
+    public void back(MouseEvent event)
     {
-        ObservableList<String> tipos = FXCollections.observableArrayList();
-        tipos.add("Candidato");
-        tipos.add("Empresa");
-        cb_tipo.setItems(tipos);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/login.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+            Stage register = (Stage) close.getScene().getWindow();
+            register.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    public void check_type()
-    {
-        cb_tipo.valueProperty().addListener(new ChangeListener<String>()
-        {
-
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String s1) {
-                if (s1.equals("Candidato"))
-                {
-                    txt_email.setText("");
-                    txt_email.setVisible(true);
-                }
-                if (s1.equals("Empresa"))
-                {
-                    txt_email.setText("None");
-                    txt_email.setVisible(false);
-                }
-            }
-        });
+    @FXML
+    public void Close(MouseEvent Event) {
+        Platform.exit();
+        System.exit(0);
     }
 }

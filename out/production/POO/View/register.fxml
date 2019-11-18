@@ -48,7 +48,7 @@
       <TextField fx:id="txt_id" layoutX="60.0" layoutY="242.0" promptText="CPF/CNPJ" />
       <ComboBox fx:id="cb_tipo" layoutX="60.0" layoutY="272.0" prefHeight="26.0" prefWidth="171.0" promptText="Tipo" />
       <TextField fx:id="txt_email" layoutX="60.0" layoutY="302.0" promptText="Email" />
-      <Button layoutX="111.0" layoutY="346.0" mnemonicParsing="false" onAction="#Register" style="-fx-background-color: #B33037;" text="Registrar" textFill="WHITE">
+      <Button layoutX="111.0" layoutY="346.0" mnemonicParsing="false" onAction="#register" style="-fx-background-color: #B33037;" text="Salvar" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

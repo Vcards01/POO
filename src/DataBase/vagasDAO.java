@@ -1,10 +1,7 @@
 package DataBase;
 
-import Model.Candidato;
 import Model.Empresa;
-import Model.Usuario;
 import Model.Vaga;
-import Sample.Criptografia;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,20 +9,18 @@ import java.util.ArrayList;
 public class vagasDAO {
     private Connection connection;
     private usuarioDAO UserDAO=new usuarioDAO();
-    public vagasDAO(){
-
-    }
 
     public void create(Vaga v) {
 
         connection = new DataBase().getConnection();
-        String sql = "INSERT OR IGNORE INTO vaga(salario,horario,nVagas,descricao,area,subarea,empresa) " + "VALUES (?, ?, ?,?, ?, ?,?,?);";
+        String sql = "INSERT OR IGNORE INTO vaga(salario,horario,nVagas,nome,descricao,area,subarea,empresa) " + "VALUES (?, ?, ?,?, ?,?, ?,?);";
         try {
 
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setDouble(2, v.getSalario());
-            stmt.setString(3, v.getHorario());
-            stmt.setInt(4, v.getNum_vagas());
+            stmt.setDouble(1, v.getSalario());
+            stmt.setString(2, v.getHorario());
+            stmt.setInt(3, v.getNum_vagas());
+            stmt.setString(4,v.getNome());
             stmt.setString(5, v.getDescricao());
             stmt.setString(6, v.getArea());
             stmt.setString(7, v.getSubArea());
@@ -38,8 +33,6 @@ public class vagasDAO {
             e.printStackTrace();
         }
     }
-
-
     public Vaga read(int id) {
         try {
             connection = new DataBase().getConnection();
@@ -50,7 +43,7 @@ public class vagasDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next())
             {
-               v= new Vaga((Empresa) UserDAO.read(rs.getString("empresa")),rs.getString("descricao"),rs.getInt("id"),rs.getDouble("salario"),rs.getString("horario"),rs.getInt("nVagas"),rs.getString("area"),rs.getString("subarea"));
+               v= new Vaga((Empresa) UserDAO.read(rs.getString("empresa")),rs.getString("descricao"),rs.getInt("id"),rs.getDouble("salario"),rs.getString("horario"),rs.getInt("nVagas"),rs.getString("area"),rs.getString("subarea"),rs.getString("nome"));
             }
             connection.close();
             return v;
@@ -61,10 +54,9 @@ public class vagasDAO {
     }
     public void update(Vaga v) {
         connection = new DataBase().getConnection();
-        String sql = "UPDATE vaga SET salario=?,horario=?,nVagas=?,descricao=?,area=?,subarea=?,empresa=?" +
+        String sql = "UPDATE vaga SET salario=?,horario=?,nVagas=?,descricao=?,area=?,subarea=?,empresa=?,nome=?" +
                     " WHERE id= ?";
         try {
-
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setDouble(1, v.getSalario());
             stmt.setString(2, v.getHorario());
@@ -73,7 +65,8 @@ public class vagasDAO {
             stmt.setString(5, v.getArea());
             stmt.setString(6, v.getSubArea());
             stmt.setString(7, v.getEmpresa().getIdentificador());
-            stmt.setInt(8,v.getId());;
+            stmt.setString(8, v.getNome());
+            stmt.setInt(9,v.getId());;
             stmt.execute();
             stmt.close();
             System.out.println("Gravado!");
@@ -81,7 +74,6 @@ public class vagasDAO {
             e.printStackTrace();
         }
     }
-
     public void delete(Vaga v) {
         connection = new DataBase().getConnection();
         try {
@@ -96,7 +88,147 @@ public class vagasDAO {
         }
     }
 
+    public ArrayList<Vaga> getVagas() {
+        connection = new DataBase().getConnection();
 
+        try {
+            String sql = "SELECT * FROM vaga";
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            ArrayList<Vaga> vagas= new ArrayList<>();
+
+            while (rs.next()) {
+               Vaga v= new Vaga((Empresa) UserDAO.read(rs.getString("empresa")),rs.getString("descricao"),rs.getInt("id"),rs.getDouble("salario"),rs.getString("horario"),rs.getInt("nVagas"),rs.getString("area"),rs.getString("subarea"),rs.getString("nome"));
+               vagas.add(v);
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+            return vagas;
+
+        }
+        catch (SQLException e) {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public ArrayList<Vaga> getVagas_by_empresa(String empresa) {
+        connection = new DataBase().getConnection();
+
+        try {
+            String sql = "SELECT * FROM vaga where empresa=?";
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setString(1,empresa);
+            ResultSet rs = stmt.executeQuery();
+
+            ArrayList<Vaga> vagas= new ArrayList<>();
+
+            while (rs.next()) {
+                Vaga v= new Vaga((Empresa) UserDAO.read(rs.getString("empresa")),rs.getString("descricao"),rs.getInt("id"),rs.getDouble("salario"),rs.getString("horario"),rs.getInt("nVagas"),rs.getString("area"),rs.getString("subarea"),rs.getString("nome"));
+                vagas.add(v);
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+            return vagas;
+
+        }
+        catch (SQLException e) {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public ArrayList<Vaga> getVagas_by_area(String area)
+    {
+        if(area.equals("ALL"))
+        {
+            return getVagas();
+        }
+        else
+        {
+            connection = new DataBase().getConnection();
+
+            try {
+                String sql = "SELECT * FROM vaga where area = ?";
+                PreparedStatement stmt = this.connection.prepareStatement(sql);
+                stmt.setString(1, area);
+                ResultSet rs = stmt.executeQuery();
+
+                ArrayList<Vaga> vagas= new ArrayList<>();
+
+                while (rs.next()) {
+                    Vaga v= new Vaga((Empresa) UserDAO.read(rs.getString("empresa")),rs.getString("descricao"),rs.getInt("id"),rs.getDouble("salario"),rs.getString("horario"),rs.getInt("nVagas"),rs.getString("area"),rs.getString("subarea"),rs.getString("nome"));
+                    vagas.add(v);
+                }
+                rs.close();
+                stmt.close();
+                connection.close();
+                return vagas;
+
+            }
+            catch (SQLException e) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    }
+    public ArrayList<Vaga> get_by_subArea(String subarea,String area)
+    {
+        if(subarea.equals("ALL"))
+        {
+            return getVagas_by_area(area);
+        }
+        else
+        {
+            connection = new DataBase().getConnection();
+
+            try {
+                String sql = "SELECT * FROM vaga where subarea= ?";
+                PreparedStatement stmt = this.connection.prepareStatement(sql);
+                stmt.setString(1, subarea);
+                ResultSet rs = stmt.executeQuery();
+
+                ArrayList<Vaga> vagas= new ArrayList<>();
+
+                while (rs.next()) {
+                    Vaga v= new Vaga((Empresa) UserDAO.read(rs.getString("empresa")),rs.getString("descricao"),rs.getInt("id"),rs.getDouble("salario"),rs.getString("horario"),rs.getInt("nVagas"),rs.getString("area"),rs.getString("subarea"),rs.getString("nome"));
+                    vagas.add(v);
+                }
+                rs.close();
+                stmt.close();
+                connection.close();
+                return vagas;
+
+            }
+            catch (SQLException e) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    }
     public ArrayList<String> get_area()
     {
         connection = new DataBase().getConnection();
@@ -200,116 +332,6 @@ public class vagasDAO {
 
     }
 
-    public ArrayList<Vaga> getVagas() {
-        connection = new DataBase().getConnection();
-
-        try {
-            String sql = "SELECT * FROM vaga";
-            PreparedStatement stmt = this.connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-
-            ArrayList<Vaga> vagas= new ArrayList<>();
-
-            while (rs.next()) {
-               Vaga v= new Vaga((Empresa) UserDAO.read(rs.getString("empresa")),rs.getString("descricao"),rs.getInt("id"),rs.getDouble("salario"),rs.getString("horario"),rs.getInt("nVagas"),rs.getString("area"),rs.getString("subarea"));
-               vagas.add(v);
-            }
-            rs.close();
-            stmt.close();
-            connection.close();
-            return vagas;
-
-        }
-        catch (SQLException e) {
-            try {
-                connection.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            e.printStackTrace();
-        }
-        return null;
-    }
-    public ArrayList<Vaga> getVagas(String area)
-    {
-        if(area.equals("ALL"))
-        {
-            return getVagas();
-        }
-        else
-        {
-            connection = new DataBase().getConnection();
-
-            try {
-                String sql = "SELECT * FROM vaga where area = ?";
-                PreparedStatement stmt = this.connection.prepareStatement(sql);
-                stmt.setString(1, area);
-                ResultSet rs = stmt.executeQuery();
-
-                ArrayList<Vaga> vagas= new ArrayList<>();
-
-                while (rs.next()) {
-                    Vaga v= new Vaga((Empresa) UserDAO.read(rs.getString("empresa")),rs.getString("descricao"),rs.getInt("id"),rs.getDouble("salario"),rs.getString("horario"),rs.getInt("nVagas"),rs.getString("area"),rs.getString("subarea"));
-                    vagas.add(v);
-                }
-                rs.close();
-                stmt.close();
-                connection.close();
-                return vagas;
-
-            }
-            catch (SQLException e) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-    }
-    public ArrayList<Vaga> get_by_subArea(String subarea,String area)
-    {
-        if(subarea.equals("ALL"))
-        {
-            return getVagas(area);
-        }
-        else
-        {
-            connection = new DataBase().getConnection();
-
-            try {
-                String sql = "SELECT * FROM vaga where subarea= ?";
-                PreparedStatement stmt = this.connection.prepareStatement(sql);
-                stmt.setString(1, subarea);
-                ResultSet rs = stmt.executeQuery();
-
-                ArrayList<Vaga> vagas= new ArrayList<>();
-
-                while (rs.next()) {
-                    Vaga v= new Vaga((Empresa) UserDAO.read(rs.getString("empresa")),rs.getString("descricao"),rs.getInt("id"),rs.getDouble("salario"),rs.getString("horario"),rs.getInt("nVagas"),rs.getString("area"),rs.getString("subarea"));
-                    vagas.add(v);
-                }
-                rs.close();
-                stmt.close();
-                connection.close();
-                return vagas;
-
-            }
-            catch (SQLException e) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-    }
 
 
 }

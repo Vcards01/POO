@@ -41,8 +41,6 @@ public class curriculoDAO {
             e.printStackTrace();
         }
     }
-
-
     public Curriculo read(int id) {
         try {
             connection = new DataBase().getConnection();
@@ -61,7 +59,6 @@ public class curriculoDAO {
         }
         return null;
     }
-
     public Curriculo read(Candidato can) {
         try {
             connection = new DataBase().getConnection();
@@ -80,7 +77,6 @@ public class curriculoDAO {
         }
         return null;
     }
-
     public void update(Curriculo c) {
         connection = new DataBase().getConnection();
         String sql = "UPDATE curriculo SET candidato=?,nome=?,cpf=?,nascimento=?,experiencia=?,curso=?,nomeCurso=?,idCurso=?" +
@@ -109,7 +105,6 @@ public class curriculoDAO {
             e.printStackTrace();
         }
     }
-
     public void delete(Curriculo c) {
         connection = new DataBase().getConnection();
         try {

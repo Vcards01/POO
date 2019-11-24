@@ -1,7 +1,9 @@
-package Controller.Controllers_Candidato;
+package Controller.Controllers_Empresa;
 
+import Controller.Controllers_Candidato.UI_candidatoDadosController;
 import DataBase.usuarioDAO;
 import Model.Candidato;
+import Model.Empresa;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,35 +12,37 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UI_candidato_DadosEditarController implements Initializable {
-    @FXML public Button btn_salvar;
+public class UI_empresa_DadosEditarController implements Initializable {
+    @FXML
+    public Button btn_salvar;
     @FXML public TextField txt_nome;
     @FXML public TextField txt_id;
     @FXML public TextField txt_email;
-    @FXML private Candidato c;
-    @FXML private UI_candidatoDadosController controller;
-    @FXML private usuarioDAO DAO = new usuarioDAO();
+    private Empresa e;
+    private UI_empresaDadosController controller;
+    private usuarioDAO DAO = new usuarioDAO();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txt_id.setEditable(false);
     }
-    public void start(Candidato c,UI_candidatoDadosController controller)
+    public void start(Empresa e, UI_empresaDadosController controller)
     {
-        this.c=c;
+        this.e=e;
         this.controller=controller;
-        txt_nome.setText(c.getNome());
-        txt_email.setText(c.getEmail());
-        txt_id.setText(c.getIdentificador());
+        txt_nome.setText(e.getNome());
+        txt_email.setVisible(false);
+        txt_id.setText(e.getIdentificador());
     }
 
     @FXML
     public void save(ActionEvent event)
     {
-        if(txt_id.getText().equals("")||txt_nome.getText().equals("")||txt_email.getText().equals(""))
+        if(txt_id.getText().equals("")||txt_nome.getText().equals(""))
         {
             Alert aviso = new Alert(Alert.AlertType.INFORMATION);
             aviso.setTitle("Preencha todos os campos");
@@ -48,9 +52,9 @@ public class UI_candidato_DadosEditarController implements Initializable {
         }
         else
         {
-            Candidato can = new Candidato(c.getUser(),c.getSenha(),txt_nome.getText(),txt_id.getText(),txt_email.getText());
-            DAO.update(can);
-            controller.reload(can);
+            Empresa em = new Empresa(e.getUser(),e.getSenha(),txt_nome.getText(),txt_id.getText());
+            DAO.update(em);
+            controller.reload(em);
             Stage close=(Stage)btn_salvar.getScene().getWindow();
             close.close();
         }

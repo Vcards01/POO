@@ -28,7 +28,7 @@ public class UI_candidatoCurriculoController implements Initializable {
     @FXML public Label txt_nascimento;
     @FXML public Label txt_experiencia;
     @FXML public Label txt_curso;
-    public Label label_curso;
+    @FXML public Label label_curso;
     private Curriculo curriculo;
     private Candidato c;
     private curriculoDAO DAO = new curriculoDAO();

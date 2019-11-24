@@ -50,7 +50,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
-            <AnchorPane layoutY="277.0" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane layoutY="277.0" onMouseClicked="#OpenPropostas" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Label layoutX="75.0" layoutY="9.0" prefHeight="19.0" prefWidth="163.0" text="Gerenciar Propostas" textFill="WHITE">
                      <font>
@@ -68,7 +68,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
-            <AnchorPane layoutY="343.0" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane layoutY="343.0" onMouseClicked="#OpenDados" prefHeight="34.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Label layoutX="100.0" layoutY="9.0" text="Perfil" textFill="WHITE">
                      <font>

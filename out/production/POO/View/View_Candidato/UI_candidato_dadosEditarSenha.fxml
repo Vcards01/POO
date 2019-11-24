@@ -3,7 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,9 +27,6 @@
          </font>
       </Label>
       <Label layoutX="95.0" layoutY="127.0" text="Edite sua senha" textFill="WHITE" />
-      <TextField fx:id="txt_SenhaVelha" layoutX="65.0" layoutY="174.0" promptText="Senh antiga" />
-      <TextField fx:id="txt_NovaSenha" layoutX="65.0" layoutY="236.0" promptText="Nova senha" />
-      <TextField fx:id="txt_Nova_senhaAgain" layoutX="65.0" layoutY="296.0" promptText="Confirme a senha" />
       <Button fx:id="btn_salvar" layoutX="121.0" layoutY="347.0" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #B33037;" text="Salvar" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -42,5 +39,8 @@
       </ImageView>
       <Label fx:id="txt_senhaIncorreta" layoutX="94.0" layoutY="152.0" text="Senha incorreta" textFill="WHITE" />
       <Label fx:id="txt_naoConfere" layoutX="66.0" layoutY="271.0" text="As senhas não conferem" textFill="WHITE" />
+      <PasswordField fx:id="txt_SenhaVelha" layoutX="75.0" layoutY="184.0" promptText="Senha antiga" />
+      <PasswordField fx:id="txt_NovaSenha" layoutX="75.0" layoutY="240.0" promptText="Nova senha" />
+      <PasswordField fx:id="txt_Nova_senhaAgain" layoutX="75.0" layoutY="304.0" promptText="Nova senha novamente" />
    </children>
 </AnchorPane>

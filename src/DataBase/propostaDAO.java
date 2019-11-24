@@ -129,5 +129,27 @@ public class propostaDAO {
         }
         return null;
     }
+    public ArrayList<Proposta> getPropostas(Empresa e) {
+        connection = new DataBase().getConnection();
+        try {
+            String sql ="SELECT * FROM proposta where status = 'Em espera' AND vaga in (SELECT id from vaga where empresa = ?);";
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setString(1,e.getIdentificador());
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Proposta> propostas = new ArrayList<>();
+            while (rs.next()) {
+                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("vaga")), rs.getString("status"));
+                propostas.add(p);
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+            return propostas;
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+        return null;
+
+    }
 
 }

@@ -34,7 +34,7 @@
       </AnchorPane>
       <HBox alignment="CENTER" layoutX="115.0" layoutY="376.0" prefHeight="30.0" prefWidth="370.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#adicionar" text="Adicionar">
+            <Button mnemonicParsing="false" onAction="#adicionar" style="-fx-background-color: #B33037;" text="Adicionar" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -42,8 +42,8 @@
                   <Insets right="30.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#editar" text="Editar" />
-            <Button mnemonicParsing="false" onAction="#remove" text="Apagar">
+            <Button mnemonicParsing="false" onAction="#editar" style="-fx-background-color: #B33037;" text="Editar" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#remove" style="-fx-background-color: #B33037;" text="Apagar" textFill="WHITE">
                <HBox.margin>
                   <Insets left="30.0" />
                </HBox.margin>

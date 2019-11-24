@@ -73,4 +73,13 @@ public class Vaga {
     public String getNome() {
         return nome;
     }
+
+    public String toString()
+    {
+        return getNome();
+    }
+
+    public void setNum_vagas(int num_vagas) {
+        this.num_vagas = num_vagas;
+    }
 }

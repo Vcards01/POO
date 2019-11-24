@@ -1,5 +1,8 @@
 package Controller.Controllers_Empresa;
 
+import Controller.Controllers_Candidato.UI_candidatoDadosController;
+import DataBase.usuarioDAO;
+import Model.Candidato;
 import Model.Empresa;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,7 @@ public class UI_empresaController implements Initializable {
     @FXML public AnchorPane btn_sair;
     @FXML public AnchorPane panel_principal;
     private Empresa e ;
+    private usuarioDAO userDAO = new usuarioDAO();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -28,7 +32,10 @@ public class UI_empresaController implements Initializable {
         this.e=e;
 
     }
-
+    public void reload_user()
+    {
+        this.e= (Empresa) userDAO.read(e.getIdentificador());
+    }
     @FXML
     public void OpenHome(MouseEvent event) throws IOException{
 
@@ -41,6 +48,25 @@ public class UI_empresaController implements Initializable {
         controller.start(e,panel_principal.getHeight(),panel_principal.getWidth());
         panel_principal.getChildren().clear();
           panel_principal.getChildren().setAll(pane);
+    }
+    @FXML
+    public void OpenPropostas(MouseEvent Event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/View_Empresa/UI_empresaPropostas.fxml"));
+        AnchorPane pane = loader.load();
+        UI_empresaPropostasController controller = loader.getController();
+        controller.start(e,panel_principal.getHeight(),panel_principal.getWidth());
+        panel_principal.getChildren().clear();
+        panel_principal.getChildren().setAll(pane);
+    }
+    @FXML
+    public void OpenDados(MouseEvent Event) throws IOException {
+        reload_user();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/View_Empresa/UI_empresa_dados.fxml"));
+        AnchorPane pane = loader.load();
+        UI_empresaDadosController controller = loader.getController();
+        controller.start(e,panel_principal.getHeight(),panel_principal.getWidth());
+        panel_principal.getChildren().clear();
+        panel_principal.getChildren().setAll(pane);
     }
     @FXML
     public void Close(MouseEvent Event) {

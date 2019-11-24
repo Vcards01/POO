@@ -29,8 +29,13 @@
          </font>
       </Label>
       <TextField fx:id="txt_nome" layoutX="60.0" layoutY="119.0" promptText="Nome" />
+      <TextField fx:id="txt_area" layoutX="60.0" layoutY="151.0" promptText="Área" />
       <TextField fx:id="txt_subarea" layoutX="60.0" layoutY="182.0" promptText="Subárea" />
       <TextField fx:id="txt_horario" layoutX="60.0" layoutY="214.0" promptText="Horario" />
+      <TextArea fx:id="txt_descricao" layoutX="60.0" layoutY="251.0" prefHeight="140.0" prefWidth="171.0" promptText="Descrição" wrapText="true" />
+      <TextField fx:id="txt_salario" layoutX="61.0" layoutY="400.0" promptText="Salario" />
+      <Label layoutX="65.0" layoutY="433.0" text="Numero de vagas:" textFill="WHITE" />
+      <Spinner fx:id="spn_n_vagas" layoutX="61.0" layoutY="455.0" />
       <Button layoutX="107.0" layoutY="551.0" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #B33037;" text="Salvar" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -41,10 +46,5 @@
             <Image url="@../../Resources/left-arrow.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txt_area" layoutX="60.0" layoutY="151.0" promptText="Área" />
-      <TextArea fx:id="txt_descricao" layoutX="60.0" layoutY="251.0" prefHeight="140.0" prefWidth="171.0" promptText="Descrição" />
-      <TextField fx:id="txt_salario" layoutX="61.0" layoutY="400.0" promptText="Salario" />
-      <Spinner fx:id="spn_n_vagas" layoutX="61.0" layoutY="455.0" />
-      <Label layoutX="65.0" layoutY="433.0" text="Numero de vagas:" textFill="WHITE" />
    </children>
 </AnchorPane>

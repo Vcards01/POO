@@ -43,7 +43,10 @@
       </HBox>
       <VBox alignment="BOTTOM_CENTER" layoutY="547.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="84.0" prefWidth="644.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="btn_criar" mnemonicParsing="false" onAction="#create" style="-fx-background-color: #B33037;" text="Criar Novo" textFill="WHITE" />
+            <Button fx:id="btn_criar" mnemonicParsing="false" onAction="#create" style="-fx-background-color: #B33037;" text="Criar Novo" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Button>
             <Button fx:id="btn_editar" mnemonicParsing="false" onAction="#edit" style="-fx-background-color: #B33037;" text="Editar" textFill="WHITE" />
          </children>
          <cursor>

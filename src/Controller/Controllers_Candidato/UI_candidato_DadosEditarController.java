@@ -14,18 +14,22 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UI_candidato_DadosEditarController implements Initializable {
+    //Botão para salvar o dado
     @FXML public Button btn_salvar;
+    //caixas de texto dos dados
     @FXML public TextField txt_nome;
     @FXML public TextField txt_id;
     @FXML public TextField txt_email;
+    //Variaveis normais
     @FXML private Candidato c;
     @FXML private UI_candidatoDadosController controller;
     @FXML private usuarioDAO DAO = new usuarioDAO();
 
-    @Override
+    @Override//Inicia a view
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txt_id.setEditable(false);
     }
+    //Inicia algumas coisas
     public void start(Candidato c,UI_candidatoDadosController controller)
     {
         this.c=c;
@@ -34,7 +38,7 @@ public class UI_candidato_DadosEditarController implements Initializable {
         txt_email.setText(c.getEmail());
         txt_id.setText(c.getIdentificador());
     }
-
+    //Evento de salvar os dados no banco
     @FXML
     public void save(ActionEvent event)
     {
@@ -56,6 +60,7 @@ public class UI_candidato_DadosEditarController implements Initializable {
         }
 
     }
+    //Fecha a janela
     @FXML
     public void Close(MouseEvent Event)
     {

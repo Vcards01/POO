@@ -13,9 +13,10 @@ public class Vaga {
     private int num_vagas;
     private String area;
     private String subArea;
+    private String status;
     ArrayList<Candidato>candidatos=new ArrayList<>();
 
-    public Vaga(Empresa empresa, String descricao, int id, double salario, String horario, int num_vagas, String area, String subArea, String nome) {
+    public Vaga(Empresa empresa, String descricao, int id, double salario, String horario, int num_vagas, String area, String subArea, String nome,String status) {
         this.empresa = empresa;
         this.descricao = descricao;
         this.id = id;
@@ -25,9 +26,10 @@ public class Vaga {
         this.area = area;
         this.subArea = subArea;
         this.nome=nome;
+        this.status=status;
     }
 
-    public Vaga(Empresa empresa, String descricao, String nome, double salario, String horario, int num_vagas, String area, String subArea) {
+    public Vaga(Empresa empresa, String descricao, String nome, double salario, String horario, int num_vagas, String area, String subArea,String status) {
         this.empresa = empresa;
         this.descricao = descricao;
         this.nome = nome;
@@ -36,6 +38,11 @@ public class Vaga {
         this.num_vagas = num_vagas;
         this.area = area;
         this.subArea = subArea;
+        this.status=status;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public String getDescricao() {
@@ -77,6 +84,10 @@ public class Vaga {
     public String toString()
     {
         return getNome();
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setNum_vagas(int num_vagas) {

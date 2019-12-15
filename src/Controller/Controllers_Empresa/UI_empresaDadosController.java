@@ -13,42 +13,43 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UI_empresaDadosController implements Initializable {
 
-    @FXML
-    public AnchorPane panel_dados;
+    //Panel principal de dadoss
+    @FXML public AnchorPane panel_dados;
+    //Label de titulos
     @FXML public Label txt_nome;
-    @FXML public Label txt_email;
     @FXML public Label txt_cpf;
+    //Variaveis normais
     @FXML private Empresa e;
     @FXML private usuarioDAO DAO = new usuarioDAO();
 
-    @Override
+    @Override//Incia a view
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+    //Incia algumas coisas
     public void start(Empresa e,Double h , Double w)
     {
         this.e= e;
         txt_nome.setText(e.getNome());
         txt_cpf.setText(e.getIdentificador());
-        txt_email.setVisible(false);
         panel_dados.setPrefHeight(h);
         panel_dados.setPrefWidth(w);
     }
+    //Recarrega os dados
     public void reload(Empresa e)
     {
         this.e= e;
         txt_nome.setText(e.getNome());
         txt_cpf.setText(e.getIdentificador());
-        txt_email.setVisible(false);
     }
 
+    //Ação de editar os dados
     @FXML
     public void editar_dados(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/View_Empresa/UI_empresa_dadosEditar.fxml"));
@@ -64,6 +65,7 @@ public class UI_empresaDadosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
+    //ação de editar a senha
     @FXML
     public void editar_senha(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/View_Empresa/UI_empresa_dadosEditarSenha.fxml"));

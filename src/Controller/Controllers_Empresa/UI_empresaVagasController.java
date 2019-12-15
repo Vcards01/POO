@@ -3,6 +3,8 @@ package Controller.Controllers_Empresa;
 import DataBase.vagasDAO;
 import Model.Empresa;
 import Model.Vaga;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,6 +33,8 @@ public class UI_empresaVagasController implements Initializable {
     @FXML public TableColumn column_salario;
     @FXML public TableView table_vagas;
     @FXML public AnchorPane panel_vagas;
+    public TableColumn column_status;
+    public ComboBox cb_filtro;
     private vagasDAO DAO = new vagasDAO();
     private Empresa e;
 
@@ -43,6 +48,8 @@ public class UI_empresaVagasController implements Initializable {
         panel_vagas.setPrefHeight(h);
         panel_vagas.setPrefWidth(w);
         set_table();
+        fill_comboBox();
+        check_type();
     }
 
     public void set_table()
@@ -52,6 +59,7 @@ public class UI_empresaVagasController implements Initializable {
         column_subarea.setCellValueFactory(new PropertyValueFactory<>("subArea"));
         column_nvagas.setCellValueFactory(new PropertyValueFactory<>("num_vagas"));
         column_salario.setCellValueFactory(new PropertyValueFactory<>("salario"));
+        column_status.setCellValueFactory(new PropertyValueFactory<>("status"));
         table_vagas.setItems(getVagas());
     }
     public ObservableList<Vaga> getVagas()
@@ -59,7 +67,33 @@ public class UI_empresaVagasController implements Initializable {
         ObservableList<Vaga> vagas =FXCollections.observableArrayList(DAO.getVagas_by_empresa(e.getIdentificador()));
         return vagas;
     }
+    public void fill_comboBox()
+    {
+        ObservableList<String> tipos = FXCollections.observableArrayList();
+        tipos.add("Livre");
+        tipos.add("Bloqueado");
+        cb_filtro.setItems(tipos);
+    }
+    public void check_type()
+    {
+        cb_filtro.valueProperty().addListener(new ChangeListener<String>()
+        {
 
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String s1) {
+                if (s1.equals("Livre"))
+                {
+                    table_vagas.getItems().removeAll();
+                    table_vagas.setItems(FXCollections.observableArrayList(DAO.get_by_status(s1)));
+                }
+                if (s1.equals("Bloqueado"))
+                {
+                    table_vagas.getItems().removeAll();
+                    table_vagas.setItems(FXCollections.observableArrayList(DAO.get_by_status(s1)));
+                }
+            }
+        });
+    }
     @FXML
     public void adicionar(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/View_Empresa/UI_empresaVagasEdit.fxml"));

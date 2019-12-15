@@ -1,6 +1,5 @@
 package Controller.Controllers_Candidato;
 
-import DataBase.usuarioDAO;
 import Model.Candidato;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,17 +18,20 @@ import java.util.ResourceBundle;
 
 public class UI_candidatoDadosController implements Initializable {
 
+    //Painel principal dos dados
     @FXML public AnchorPane panel_dados;
+    //Labem de titulos
     @FXML public Label txt_nome;
     @FXML public Label txt_email;
     @FXML public Label txt_cpf;
+    //Variaveis normais
     @FXML private Candidato c;
-    @FXML private usuarioDAO DAO = new usuarioDAO();
 
-    @Override
+    @Override//Inicia view
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+    //Incia algumas coisas
     public void start(Candidato c,Double h , Double w)
     {
         this.c= c;
@@ -39,6 +41,7 @@ public class UI_candidatoDadosController implements Initializable {
         panel_dados.setPrefHeight(h);
         panel_dados.setPrefWidth(w);
     }
+    //Recarrega os dados
     public void reload(Candidato c)
     {
         this.c= c;
@@ -46,7 +49,7 @@ public class UI_candidatoDadosController implements Initializable {
         txt_cpf.setText(c.getIdentificador());
         txt_email.setText(c.getEmail());
     }
-
+    //evento de edição de dados
     @FXML
     public void editar_dados(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/View_Candidato/UI_candidato_dadosEditar.fxml"));
@@ -62,6 +65,7 @@ public class UI_candidatoDadosController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
+    //Evento de edição de senha
     @FXML
     public void editar_senha(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/View_Candidato/UI_candidato_dadosEditarSenha.fxml"));

@@ -26,7 +26,7 @@ public class Tables {
                 "usuario VARCHAR(30)," +
                 "senha VARCHAR(30)," +
                 "PRIMARY KEY('cpf'));";
-        String data_1="INSERT OR IGNORE INTO candidato(cpf,nome,email,usuario,senha)VALUES('47560617883','victor','vhcardoso30@gmail.com','vcards1','" +Criptografia.Converter("victor123")+ "');";
+        String data_1="INSERT OR IGNORE INTO candidato(cpf,nome,email,usuario,senha)VALUES('123123123123','victor','vhcardoso30@gmail.com','usuario','" +Criptografia.Converter("123")+ "');";
         Statement stmt = null;
         try {
             stmt = connection.createStatement();
@@ -44,7 +44,7 @@ public class Tables {
                 "usuario VARCHAR(30)," +
                 "senha VARCHAR(30)," +
                 "PRIMARY KEY('cnpj'));";
-        String data_1="INSERT OR IGNORE INTO empresa(cnpj,nome,usuario,senha)VALUES('00000000000','IFSP campus são carlos','IFSP','" +Criptografia.Converter("ifspsaocarlos")+ "');";
+        String data_1="INSERT OR IGNORE INTO empresa(cnpj,nome,usuario,senha)VALUES('00000000000','No Name S/A','empresa','" +Criptografia.Converter("123")+ "');";
         String data_2="INSERT OR IGNORE INTO empresa(cnpj,nome,usuario,senha)VALUES('11111111111','Facebook','Facebook','" +Criptografia.Converter("facebook")+ "');";
         String data_3="INSERT OR IGNORE INTO empresa(cnpj,nome,usuario,senha)VALUES('22222222222','Google','Google','" +Criptografia.Converter("google")+ "');";
         String data_4="INSERT OR IGNORE INTO empresa(cnpj,nome,usuario,senha)VALUES('33333333333','Apple','Apple','" +Criptografia.Converter("apple")+ "');";
@@ -74,17 +74,18 @@ public class Tables {
                 "area VARCHAR(30)," +
                 "subarea VARCHAR(30)," +
                 "empresa VARCHAR(30)," +
+                "status VARCHAR(30)," +
                 "FOREIGN KEY(empresa) REFERENCES empresa(cnpj));";
-        String data_1="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar no desenvolvimento de sites',1,1200,'08:00',5,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Web','00000000000');";
-        String data_2="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar no desenvolvimento de aplicações',2,1250,'06:00',4,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Mobile','00000000000');";
-        String data_3="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar no desenvolvimento de sites',3,3200,'08:00',3,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Web','00000000000');";
-        String data_4="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar no desenvolvimento de Programas',4,1400,'05:00',2,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Desktop','00000000000');";
-        String data_6="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar na Analise de software',5,12000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Engenharia de software','00000000000');";
-        String data_7="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Gerenciar funcionarios da empresa',6,1000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','Administração','RH','11111111111');";
-        String data_8="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Gerenciar projetos na empresa',7,3000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','Administração','Gerenciamento de projetos','11111111111');";
-        String data_9="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Desenvolver e lidar com componentes eletricos',8,1500,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','Engenharia Eletrica','Eletronica','22222222222');";
-        String data_10="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar na Analise de software',9,1200,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Engenharia de software','22222222222');";
-        String data_11="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa)VALUES('Trabalhar na Analise de software',10,17000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Engenharia de software','33333333333');";
+        String data_1="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa,status)VALUES('Trabalhar no desenvolvimento de sites',1,1200,'08:00',5,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Web','00000000000','Livre');";
+        String data_2="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa,status)VALUES('Trabalhar no desenvolvimento de aplicações',2,1250,'06:00',4,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Mobile','00000000000','Livre');";
+        String data_3="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa,status)VALUES('Trabalhar no desenvolvimento de sites',3,3200,'08:00',3,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Web','00000000000','Livre');";
+        String data_4="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa,status)VALUES('Trabalhar no desenvolvimento de Programas',4,1400,'05:00',2,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Desenvolvimento Desktop','00000000000','Livre');";
+        String data_6="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa,status)VALUES('Trabalhar na Analise de software',5,12000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Engenharia de software','00000000000','Livre');";
+        String data_7="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa,status)VALUES('Gerenciar funcionarios da empresa',6,1000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','Administração','RH','11111111111','Livre');";
+        String data_8="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa,status)VALUES('Gerenciar projetos na empresa',7,3000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','Administração','Gerenciamento de projetos','11111111111','Livre');";
+        String data_9="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa,status)VALUES('Desenvolver e lidar com componentes eletricos',8,1500,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','Engenharia Eletrica','Eletronica','22222222222','Livre');";
+        String data_10="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa,status)VALUES('Trabalhar na Analise de software',9,1200,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Engenharia de software','22222222222','Livre');";
+        String data_11="INSERT OR IGNORE INTO vaga(nome,id,salario,horario,nVagas,descricao,area,subarea,empresa,status)VALUES('Trabalhar na Analise de software',10,17000,'09:00',1,'Ser responsavel,Ter experiecia na area,disponibilidade para viagens','TI','Engenharia de software','33333333333','Livre');";
 
         Statement stmt = null;
         try {
@@ -110,6 +111,8 @@ public class Tables {
                 "candidato VARCHAR(40)," +
                 "vaga INTEGER," +
                 "status VARCHAR(20)," +
+                "notifica_emp VARCHAR(20)," +
+                "notifica_user VARCHAR(20)," +
                 "FOREIGN KEY(vaga) REFERENCES vaga(id)," +
                 "FOREIGN KEY(candidato) REFERENCES candidato(cpf));";
         Statement stmt = null;

@@ -19,25 +19,30 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UI_candidatoVagasController implements Initializable {
+    //Painel principal de vagas
     @FXML  public AnchorPane panel_vagas;
-    @FXML public Label txt_disponiveis;
+    //Combo box de area e subarea
     @FXML public ComboBox cb_area;
     @FXML public ComboBox cb_subarea;
+    //Tabela das vagas
+    @FXML public TableView table_vagas;
+    //Colunas da tabela de vagas
     @FXML public TableColumn column_area;
     @FXML public TableColumn column_subarea;
     @FXML public TableColumn column_nvagas;
     @FXML public TableColumn column_salario;
     @FXML public TableColumn column_empresa;
-    @FXML public TableView table_vagas;
     @FXML public TableColumn column_nome;
+    //Variaveis normais
     private vagasDAO DAO = new vagasDAO();
     private Candidato c;
     private propostaDAO propDAO = new propostaDAO();
 
-    @Override
+    @Override//Inicia a view
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+    //incia algumas coisas
     public void start(Candidato c,Double h , Double w)
     {
         this.c=c;
@@ -49,6 +54,7 @@ public class UI_candidatoVagasController implements Initializable {
         find_by_subarea();
 
     }
+    //Define as colunas da tabelas
     public void set_table()
     {
         column_nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -59,6 +65,7 @@ public class UI_candidatoVagasController implements Initializable {
         column_empresa.setCellValueFactory(new PropertyValueFactory<>("empresa"));
         table_vagas.setItems(getVagas());
     }
+    //Preenche a combobox
     public void fill_comboBox()
     {
         ObservableList<String> areas = FXCollections.observableArrayList(DAO.get_area());
@@ -67,27 +74,32 @@ public class UI_candidatoVagasController implements Initializable {
         cb_subarea.setItems(subareas);
 
     }
+    //Preenche a combobox usando uma area
     public void fill_comboBox(String area)
     {
         ObservableList<String> subareas = FXCollections.observableArrayList(DAO.get_subarea(area));
         cb_subarea.setItems(subareas);
 
     }
+    //retorna as vagas
     public ObservableList<Vaga> getVagas()
     {
-        ObservableList<Vaga> vagas =FXCollections.observableArrayList(DAO.getVagas());
+        ObservableList<Vaga> vagas =FXCollections.observableArrayList(DAO.getVagas(c));
         return vagas;
     }
+    //retorna as vagas por area
     public ObservableList<Vaga> getVagas_by_area(String area)
     {
-        ObservableList<Vaga> vagas =FXCollections.observableArrayList(DAO.getVagas_by_area(area));
+        ObservableList<Vaga> vagas =FXCollections.observableArrayList(DAO.getVagas_by_area(area,c));
         return vagas;
     }
+    //retorna as vagas por sub area
     public ObservableList<Vaga> getVagas_by_subarea(String subarea)
     {
-        ObservableList<Vaga> vagas =FXCollections.observableArrayList(DAO.get_by_subArea(subarea, (String) cb_area.getSelectionModel().getSelectedItem()));
+        ObservableList<Vaga> vagas =FXCollections.observableArrayList(DAO.get_by_subArea(subarea, (String) cb_area.getSelectionModel().getSelectedItem(),c));
         return vagas;
     }
+    //Listener para mudar tudo de acordo com a area
     public void find_by_area()
     {
         cb_area.valueProperty().addListener(new ChangeListener<String>()
@@ -104,6 +116,7 @@ public class UI_candidatoVagasController implements Initializable {
             }
         });
     }
+    //Listener para mudar tudo de acordo com a subarea
     public void find_by_subarea()
     {
         cb_subarea.valueProperty().addListener(new ChangeListener<String>()
@@ -116,7 +129,7 @@ public class UI_candidatoVagasController implements Initializable {
             }
         });
     }
-
+    //Mostra a descrição da vaga
     @FXML
     public void show_descricao(ActionEvent event)
     {
@@ -127,16 +140,21 @@ public class UI_candidatoVagasController implements Initializable {
         aviso.setContentText(v.getDescricao());
         aviso.show();
     }
+    //Evento para se candidatar a vaga
     @FXML
     public void candidatar(ActionEvent event)
     {
         Vaga v = (Vaga)table_vagas.getSelectionModel().getSelectedItem();
-        Proposta p = new Proposta(c,v,"Em espera");
+        Proposta p = new Proposta(c,v,"Em espera",false,false);
         propDAO.create(p);
         Alert aviso = new Alert(Alert.AlertType.INFORMATION);
         aviso.setTitle("Sucesso");
         aviso.setHeaderText(null);
         aviso.setContentText("Você se canditatou para a vaga,fique atento a resposta da empresa");
         aviso.show();
+        cb_area.setValue("ALL");
+        cb_subarea.setValue("ALL");
+        table_vagas.getItems().removeAll();
+        set_table();
     }
 }

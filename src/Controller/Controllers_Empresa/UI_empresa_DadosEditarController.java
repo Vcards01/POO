@@ -1,8 +1,6 @@
 package Controller.Controllers_Empresa;
 
-import Controller.Controllers_Candidato.UI_candidatoDadosController;
 import DataBase.usuarioDAO;
-import Model.Candidato;
 import Model.Empresa;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,24 +10,26 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UI_empresa_DadosEditarController implements Initializable {
-    @FXML
-    public Button btn_salvar;
+    //Botão para salvar os dados da empresa
+    @FXML public Button btn_salvar;
+    //Campos para os dados
     @FXML public TextField txt_nome;
     @FXML public TextField txt_id;
     @FXML public TextField txt_email;
+    //Variaveis normais
     private Empresa e;
     private UI_empresaDadosController controller;
     private usuarioDAO DAO = new usuarioDAO();
 
-    @Override
+    @Override//Incia o view
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txt_id.setEditable(false);
     }
+    //Inicia algumas coisas
     public void start(Empresa e, UI_empresaDadosController controller)
     {
         this.e=e;
@@ -38,7 +38,7 @@ public class UI_empresa_DadosEditarController implements Initializable {
         txt_email.setVisible(false);
         txt_id.setText(e.getIdentificador());
     }
-
+    //Salva os dados
     @FXML
     public void save(ActionEvent event)
     {
@@ -60,6 +60,7 @@ public class UI_empresa_DadosEditarController implements Initializable {
         }
 
     }
+    //Fecha a aba
     @FXML
     public void Close(MouseEvent Event)
     {

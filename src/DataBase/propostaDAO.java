@@ -19,13 +19,15 @@ public class propostaDAO {
     public void create(Proposta p) {
 
         connection = new DataBase().getConnection();
-        String sql = "INSERT OR IGNORE INTO proposta(candidato,vaga,status) " + "VALUES (?, ?, ?);";
+        String sql = "INSERT OR IGNORE INTO proposta(candidato,vaga,status,notifica_emp,notifica_user) " + "VALUES (?, ?, ?,?,?);";
         try {
 
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, p.getCandidato().getIdentificador());
             stmt.setInt(2, p.getVaga().getId());
             stmt.setString(3, p.getStatus());
+            stmt.setBoolean(4,p.isNotifica_emp() );
+            stmt.setBoolean(5, p.isNotifica_user());
             stmt.execute();
             stmt.close();
             connection.close();
@@ -44,8 +46,29 @@ public class propostaDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next())
             {
-                p=new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")),vagasDAO.read(rs.getInt("id")),rs.getString("status"));
+                p=new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")),vagasDAO.read(rs.getInt("id")),rs.getString("status"),rs.getBoolean("notifica_user"),rs.getBoolean("notifica_emp"));
             }
+            connection.close();
+            return p;
+        } catch (SQLException e) {
+            e.getErrorCode();
+        }
+        return null;
+    }
+    public Proposta read(String candidato,int vaga) {
+        try {
+            connection = new DataBase().getConnection();
+            Proposta p = null;
+            String sql = "SELECT * FROM proposta WHERE candidato=? and vaga=?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1,candidato);
+            stmt.setInt(2,vaga);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next())
+            {
+                p=new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")),vagasDAO.read(rs.getInt("vaga")),rs.getString("status"),rs.getBoolean("notifica_user"),rs.getBoolean("notifica_emp"));
+            }
+            System.out.println(p.getEmail_candidato());
             connection.close();
             return p;
         } catch (SQLException e) {
@@ -55,14 +78,16 @@ public class propostaDAO {
     }
     public void update(Proposta p) {
         connection = new DataBase().getConnection();
-        String sql = "UPDATE proposta SET candidato=?,vaga=?,status=?" +
+        String sql = "UPDATE proposta SET candidato=?,vaga=?,status=?,notifica_emp=?,notifica_user=?" +
                 " WHERE id= ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, p.getCandidato().getIdentificador());
             stmt.setInt(2, p.getVaga().getId());
             stmt.setString(3, p.getStatus());
-            stmt.setInt(4,p.getId());
+            stmt.setBoolean(4, p.isNotifica_emp());
+            stmt.setBoolean(5, p.isNotifica_user());
+            stmt.setInt(6,p.getId());
             stmt.execute();
             stmt.close();
             System.out.println("Gravado!");
@@ -83,16 +108,18 @@ public class propostaDAO {
             throw new RuntimeException(e);
         }
     }
-    public ArrayList<Proposta> getPropostas() {
+    public ArrayList<Proposta> getPropostas(Empresa e,String status) {
         connection = new DataBase().getConnection();
 
         try {
-            String sql = "SELECT * FROM proposta";
+            String sql = "SELECT p.id, p.candidato, p.vaga,p.status,p.notifica_emp,p.notifica_user  FROM proposta p JOIN vaga v on p.vaga=v.id JOIN empresa p on v.empresa=? AND p.status=? AND notifica_emp=0 GROUP BY p.id;";
             PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setString(1,e.getIdentificador());
+            stmt.setString(2,status);
             ResultSet rs = stmt.executeQuery();
             ArrayList<Proposta> propostas = new ArrayList<>();
             while (rs.next()) {
-                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("vaga")), rs.getString("status"));
+                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("vaga")), rs.getString("status"),rs.getBoolean("notifica_user"),rs.getBoolean("notifica_emp"));
                 propostas.add(p);
             }
             rs.close();
@@ -100,8 +127,8 @@ public class propostaDAO {
             connection.close();
             return propostas;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException err) {
+            err.printStackTrace();
         }
         return null;
     }
@@ -109,14 +136,14 @@ public class propostaDAO {
         connection = new DataBase().getConnection();
 
         try {
-            String sql = "SELECT * FROM proposta where candidato=? AND status= ?";
+            String sql = "SELECT * FROM proposta where candidato=? AND status= ? AND notifica_user!=1";
             PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setString(1,c.getIdentificador());
             stmt.setString(2,status);
             ResultSet rs = stmt.executeQuery();
             ArrayList<Proposta> propostas = new ArrayList<>();
             while (rs.next()) {
-                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("vaga")), rs.getString("status"));
+                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("vaga")), rs.getString("status"),rs.getBoolean("notifica_user"),rs.getBoolean("notifica_emp"));
                 propostas.add(p);
             }
             rs.close();
@@ -138,7 +165,7 @@ public class propostaDAO {
             ResultSet rs = stmt.executeQuery();
             ArrayList<Proposta> propostas = new ArrayList<>();
             while (rs.next()) {
-                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("vaga")), rs.getString("status"));
+                Proposta p = new Proposta(rs.getInt("id"), (Candidato) userDAO.read(rs.getString("candidato")), vagasDAO.read(rs.getInt("vaga")), rs.getString("status"),rs.getBoolean("notifica_user"),rs.getBoolean("notifica_emp"));
                 propostas.add(p);
             }
             rs.close();

@@ -76,6 +76,7 @@ public class RegisterController implements Initializable {
     @FXML
     public void register(ActionEvent actionEvent) {
         Boolean existes=false;
+        Boolean numero=false;
         if(txt_id.getText().equals("")||txt_nome.getText().equals("")||txt_senha.getText().equals("")||txt_user.getText().equals("")||txt_email.getText().equals(""))
         {
             Alert aviso = new Alert(Alert.AlertType.INFORMATION);
@@ -105,30 +106,48 @@ public class RegisterController implements Initializable {
             }
             if (existes==false)
             {
-                if(cb_tipo.getValue().equals("Candidato"))
+                try
                 {
-                    Usuario u= new Candidato(txt_user.getText(),txt_senha.getText(),txt_nome.getText(),txt_id.getText(),txt_email.getText());
-                    dao.create(u);
+                    Double.parseDouble(txt_id.getText());
+                    numero=true;
                 }
-                else if(cb_tipo.getValue().equals("Empresa"))
+                catch (Exception e)
                 {
-                    Usuario u = new Empresa(txt_user.getText(),txt_senha.getText(),txt_nome.getText(),txt_id.getText());
-                    dao.create(u);
+                    Alert aviso = new Alert(Alert.AlertType.INFORMATION);
+                    aviso.setTitle("Formato incorreto");
+                    aviso.setHeaderText(null);
+                    aviso.setContentText("CPF/CNPJ apanas numeros");
+                    aviso.show();
+                    numero=false;
                 }
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/login.fxml"));
-                    Parent root = loader.load();
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.centerOnScreen();
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.show();
-                    Stage register = (Stage) close.getScene().getWindow();
-                    register.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if(numero)
+                {
+                    if(cb_tipo.getValue().equals("Candidato"))
+                    {
+                        Usuario u= new Candidato(txt_user.getText(),txt_senha.getText(),txt_nome.getText(),txt_id.getText(),txt_email.getText());
+                        dao.create(u);
+                    }
+                    else if(cb_tipo.getValue().equals("Empresa"))
+                    {
+                        Usuario u = new Empresa(txt_user.getText(),txt_senha.getText(),txt_nome.getText(),txt_id.getText());
+                        dao.create(u);
+                    }
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/login.fxml"));
+                        Parent root = loader.load();
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.centerOnScreen();
+                        stage.initStyle(StageStyle.UNDECORATED);
+                        stage.show();
+                        Stage register = (Stage) close.getScene().getWindow();
+                        register.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
+
             }
 
         }

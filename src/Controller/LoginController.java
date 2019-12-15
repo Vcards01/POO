@@ -79,7 +79,7 @@ public class LoginController implements Initializable {
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     UI_empresaController controller=loader.getController();
-                    controller.get_user((Empresa) u);
+                    controller.start((Empresa) u);
                     stage.setScene(scene);
                     stage.centerOnScreen();
                     stage.initStyle(StageStyle.UNDECORATED);

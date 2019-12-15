@@ -28,12 +28,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UI_empresaPropostasController implements Initializable {
+    //Painel principal das propostas
+    public AnchorPane panel_propostas;
+    //Tabela de proposta
+    public TableView table_propostas;
+    //Colunas das tabelas
     public TableColumn column_nome_candidato;
     public TableColumn column_email_candidato;
     public TableColumn column_nome_vaga;
     public TableColumn column_nvagas;
-    public TableView table_propostas;
-    public AnchorPane panel_propostas;
+    //Variaveis normal
     private Empresa e;
     private propostaDAO DAO = new propostaDAO();
     private vagasDAO vagasDAO= new vagasDAO();
@@ -69,6 +73,9 @@ public class UI_empresaPropostasController implements Initializable {
         p.setStatus("Positivo");
         p.getVaga().setNum_vagas(p.getN_vagas()-1);
         p.setN_vagas(p.getN_vagas()-1);
+        if(p.getN_vagas()==0) {
+            p.getVaga().setStatus("Bloqueado");
+        }
         vagasDAO.update(p.getVaga());
         DAO.update(p);
         Alert aviso = new Alert(Alert.AlertType.INFORMATION);
@@ -82,9 +89,6 @@ public class UI_empresaPropostasController implements Initializable {
     public void recusar(ActionEvent event) throws IOException {
         Proposta p = (Proposta) table_propostas.getSelectionModel().getSelectedItem();
         p.setStatus("Negativo");
-        p.getVaga().setNum_vagas(p.getN_vagas()-1);
-        p.setN_vagas(p.getN_vagas()-1);
-        vagasDAO.update(p.getVaga());
         DAO.update(p);
         Alert aviso = new Alert(Alert.AlertType.INFORMATION);
         aviso.setTitle("Proposta recusada");

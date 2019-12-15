@@ -8,32 +8,37 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UI_candidato_DadosEditarSenhaController implements Initializable {
+    //Botão para salvar a senha
     @FXML public Button btn_salvar;
+    //Password fields para as senhas
     @FXML public PasswordField txt_SenhaVelha;
     @FXML public PasswordField txt_NovaSenha;
     @FXML public PasswordField txt_Nova_senhaAgain;
+    //Labels de aviso
     @FXML public Label txt_senhaIncorreta;
     @FXML public Label txt_naoConfere;
+    //Variaveis normais
     private usuarioDAO userDAO = new usuarioDAO();
     private Candidato c;
 
-    @Override
+    @Override//Inicia a view
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
+    //Inicia algumas coisas
     public void start(Candidato c) {
         txt_naoConfere.setVisible(false);
         txt_senhaIncorreta.setVisible(false);
         this.c =c;
     }
 
+    //Salva a nova senha no banco
     @FXML
     public void save(ActionEvent event) {
         System.out.println(txt_Nova_senhaAgain.getText());
@@ -58,6 +63,7 @@ public class UI_candidato_DadosEditarSenhaController implements Initializable {
             txt_senhaIncorreta.setVisible(true);
         }
     }
+    //Fecha a aba
     @FXML
     public void Close(MouseEvent Event)
     {
